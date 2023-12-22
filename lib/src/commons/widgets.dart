@@ -355,12 +355,12 @@ Widget mToolbar(BuildContext context, var title, var icon,
             finish(context);
           },
           child: Container(
-            margin: EdgeInsets.only(left: spacing_standard_new),
+            margin: const EdgeInsets.only(left: spacing_standard_new),
             width: width * 0.1,
             height: width * 0.1,
             decoration: boxDecoration(
                 showShadow: false, bgColor: social_colorPrimary, radius: 12),
-            child: Icon(Icons.keyboard_arrow_left, color: social_white),
+            child: const Icon(Icons.keyboard_arrow_left, color: social_white),
           ),
         ),
         Center(
@@ -373,10 +373,10 @@ Widget mToolbar(BuildContext context, var title, var icon,
             onTap();
           },
           child: Container(
-              margin: EdgeInsets.only(right: spacing_standard_new),
+              margin: const EdgeInsets.only(right: spacing_standard_new),
               width: width * 0.1,
               height: width * 0.1,
-              padding: EdgeInsets.all(6),
+              padding: const EdgeInsets.all(6),
               decoration: boxDecoration(
                   showShadow: false, bgColor: social_view_color, radius: 12),
               child: SvgPicture.asset(icon, color: social_textColorPrimary)),

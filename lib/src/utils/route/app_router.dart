@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/create_account/create_account_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/login/login_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/register_mail/register_mail_screen.dart';
+import 'package:kitap_arkadasligi/src/modules/dashboard%20copy/temp.dart';
+import 'package:kitap_arkadasligi/src/modules/dashboard%20copy/temp2.dart';
 import 'package:kitap_arkadasligi/src/modules/dashboard/dashboard_screen.dart';
 import 'package:kitap_arkadasligi/src/utils/route/guards/auth_guard.dart';
 part 'app_router.gr.dart';
@@ -22,7 +24,10 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(page: CreateAccountRoute.page),
     AutoRoute(page: RegisterMailRoute.page),
-    AutoRoute(page: DashboardRoute.page),
+    AutoRoute(page: DashboardRoute.page, children: [
+      AutoRoute(page: TempRoute.page),
+      AutoRoute(page: TempRoute2.page),
+    ]),
   ];
 }
 

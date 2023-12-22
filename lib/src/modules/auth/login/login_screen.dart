@@ -5,7 +5,6 @@ import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/images.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/login/bloc/login_bloc.dart';
-import 'package:kitap_arkadasligi/src/store/user_signup.dart';
 import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -126,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: isIconTrue,
                         focusNode: f2,
                         validator: (value) {
-                          return Validate.validate(value!);
+                          return null;
                         },
                         onFieldSubmitted: (v) {
                           f2.unfocus();
@@ -167,10 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            BlocProvider.of<LoginBloc>(context).add(
+                            /*   BlocProvider.of<LoginBloc>(context).add(
                                 LoginActionEvent(
                                     email: _emailController!.text,
-                                    password: _passwordController!.text));
+                                    password: _passwordController!.text)); */
                           }
                         },
                         child: Container(

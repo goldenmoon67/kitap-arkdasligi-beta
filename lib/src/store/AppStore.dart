@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kitap_arkadasligi/src/commons/colors.dart' as colors;
 import 'package:kitap_arkadasligi/src/commons/constants.dart';
 
 import 'package:mobx/mobx.dart';

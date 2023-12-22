@@ -16,7 +16,6 @@ class RegisterMailScreen extends StatefulWidget {
 
 class _RegisterMailScreenState extends State<RegisterMailScreen> {
   TextEditingController? _emailController;
-  TextEditingController? _passwordController;
 
   bool isIconTrue = false;
   bool isChecked = false;
