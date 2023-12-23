@@ -166,10 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            /*   BlocProvider.of<LoginBloc>(context).add(
+                            BlocProvider.of<LoginBloc>(context).add(
                                 LoginActionEvent(
                                     email: _emailController!.text,
-                                    password: _passwordController!.text)); */
+                                    password: _passwordController!.text));
                           }
                         },
                         child: Container(

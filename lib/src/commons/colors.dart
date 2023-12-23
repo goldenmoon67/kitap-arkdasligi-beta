@@ -5,11 +5,13 @@ const Color primaryBlackColor = Colors.black;
 const Color primaryWhiteColor = Colors.white;
 const Color primaryGreyColor = Colors.black87;
 const editTextBgColor = Color(0xFFF8F8F8);
+// ignore: constant_identifier_names
 const BHAppTextColorPrimary = Color(0xFF212121);
 
 // Dark Theme Colors
 const appBackgroundColorDark = Color(0xFF121212);
 const cardBackgroundBlackDark = Color(0xFF1F1F1F);
+// ignore: constant_identifier_names
 const color_primary_black = Color(0xFF131d25);
 const appColorPrimaryDarkLight = Color(0xFFF9FAFF);
 const iconColorPrimaryDark = Color(0xFF212121);

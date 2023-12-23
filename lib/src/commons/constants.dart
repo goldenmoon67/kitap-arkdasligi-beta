@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 const isDarkModeOnPref = 'isDarkModeOnPref';
 
 const inputTextStyle = TextStyle(color: Colors.grey, fontSize: 12);
@@ -8,6 +7,7 @@ const inputTextStyle = TextStyle(color: Colors.grey, fontSize: 12);
 const TextStyle textStyle1 =
     TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16);
 
+// ignore: constant_identifier_names
 const DATE_FORMAT_2 = 'd MMM, yyyy';
 /*fonts*/
 const fontRegular = 'Regular';
@@ -24,7 +24,10 @@ const textSizeLarge = 24.0;
 const textSizeXLarge = 28.0;
 const textSizeXXLarge = 30.0;
 
+// ignore: constant_identifier_names
 const spacing_middle = 10.0;
+// ignore: constant_identifier_names
 const spacing_standard_new = 16.0;
 
+// ignore: constant_identifier_names
 const BaseUrl = 'https://assets.iqonic.design/old-themeforest-images/prokit';

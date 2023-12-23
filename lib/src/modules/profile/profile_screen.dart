@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitap_arkadasligi/src/commons/app_component.dart';
+import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
 
 import 'package:nb_utils/nb_utils.dart';
 
@@ -21,22 +23,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              decoration: boxDecoration(
-                  bgColor: context.cardColor, showShadow: true, radius: 10),
-              child: const Text(
-                "Profile Screen",
-                style: TextStyle(fontSize: 60),
+    return BlocProvider(
+      create: (context) => ProfileBloc()..add(StartEvent()),
+      child: BlocConsumer<ProfileBloc, ProfileState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    decoration: boxDecoration(
+                        bgColor: context.cardColor,
+                        showShadow: true,
+                        radius: 10),
+                    child: const Text(
+                      "Profile Screen",
+                      style: TextStyle(fontSize: 60),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

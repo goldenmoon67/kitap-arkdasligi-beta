@@ -4,8 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kitap_arkadasligi/src/configs/flavors.dart';
+import 'package:kitap_arkadasligi/src/data/services/interceptors/auth_interceptor.dart';
 import 'package:kitap_arkadasligi/src/data/services/interceptors/default_header_interceptor.dart';
 import 'package:kitap_arkadasligi/src/data/services/interceptors/error_interceptor.dart';
+import 'package:kitap_arkadasligi/src/data/services/oauth/oauth.dart';
 import 'package:kitap_arkadasligi/src/data/services/oauth/oauth_secure_storage.dart';
 import 'package:kitap_arkadasligi/src/data/services/transformers/flutter_transformer.dart';
 import 'package:kitap_arkadasligi/src/utils/di/getit_register.dart';
@@ -37,9 +39,17 @@ class RestApiService {
     dio.transformer = FlutterTransformer();
     final storage = getIt<OAuthSecureStorage>();
     final oauthDio = _createOAuthDio();
-
+    final oauth = OAuth(
+        tokenUrl: '/users/refresh-token',
+        clientId: 'zero2HeroClientId',
+        clientSecret: 'zero2HeroClientSecret',
+        storage: storage,
+        dio: oauthDio);
     dio.interceptors.add(DefaultHeaderInterceptor());
-
+    dio.interceptors.add(AuthInterceptor(oauth, dio, onInvalid: (error) {
+      //logout from app
+      return;
+    }));
     if (F.logging) {
       final logger = getIt<Logger>();
       dio.interceptors.add(PrettyDioLogger(

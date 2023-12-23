@@ -25,7 +25,8 @@ class BubbleBottomBar extends StatefulWidget {
       this.hasNotch = false,
       this.hasInk = false,
       this.inkColor,
-      this.fabLocation})
+      this.fabLocation,
+      this.colorTween})
       : assert(items.length >= 2),
         assert(
           items.every((BubbleBottomBarItem item) => item.title != null) == true,
@@ -45,6 +46,7 @@ class BubbleBottomBar extends StatefulWidget {
   final bool hasInk;
   final BubbleBottomBarFabLocation? fabLocation;
   final Color? inkColor;
+  final ColorTween? colorTween;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -132,7 +134,7 @@ class _BottomNavigationTile extends StatelessWidget {
                       alignment: const Alignment(0, 0),
                       firstChild: label,
                       secondChild: Container(),
-                      duration: const Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: 500),
                       sizeCurve: Curves.fastOutSlowIn,
                       firstCurve: Curves.fastOutSlowIn,
                       secondCurve: Curves.fastOutSlowIn.flipped,
@@ -341,6 +343,7 @@ class _BottomNavigationBarState extends State<BubbleBottomBar>
               tabIndex: i + 1, tabCount: widget.items.length),
           ink: widget.hasInk,
           inkColor: widget.inkColor,
+          colorTween: widget.colorTween,
         ),
       );
     }
