@@ -5,24 +5,20 @@ import 'package:kitap_arkadasligi/src/commons/app_component.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
-class TempScreen2 extends StatefulWidget {
-  const TempScreen2({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<TempScreen2> createState() => _TempScreen2State();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _TempScreen2State extends State<TempScreen2> {
-  TextEditingController? _emailController;
-  TextEditingController? _passwordController;
-
-  bool isIconTrue = false;
-  bool isChecked = false;
-
-  FocusNode f1 = FocusNode();
-  FocusNode f2 = FocusNode();
-
+class _ProfileScreenState extends State<ProfileScreen> {
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +31,7 @@ class _TempScreen2State extends State<TempScreen2> {
               decoration: boxDecoration(
                   bgColor: context.cardColor, showShadow: true, radius: 10),
               child: const Text(
-                "Dashboard 222",
+                "Profile Screen",
                 style: TextStyle(fontSize: 60),
               ),
             ),

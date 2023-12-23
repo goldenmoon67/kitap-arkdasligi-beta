@@ -4,3 +4,5 @@ part of 'dashboard_bloc.dart';
 sealed class DashboardState {}
 
 final class DashboardInitial extends DashboardState {}
+
+final class DashBoardaaa extends DashboardState {}

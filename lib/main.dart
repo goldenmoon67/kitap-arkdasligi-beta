@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kitap_arkadasligi/src/configs/flavors.dart';
 import 'package:kitap_arkadasligi/src/store/AppStore.dart';
@@ -26,6 +27,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final AppRouter _appRouter = getIt<AppRouter>();
+  @override
+  void initState() {
+    Firebase.initializeApp();
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override

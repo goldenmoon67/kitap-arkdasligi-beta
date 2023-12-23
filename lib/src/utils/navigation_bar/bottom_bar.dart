@@ -47,6 +47,7 @@ class BubbleBottomBar extends StatefulWidget {
   final Color? inkColor;
 
   @override
+  // ignore: library_private_types_in_public_api
   _BottomNavigationBarState createState() => _BottomNavigationBarState();
 }
 

@@ -27,28 +27,28 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DashboardScreen(),
       );
     },
+    HomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeScreen(),
+      );
+    },
     LoginRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(child: const LoginScreen()),
       );
     },
+    ProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileScreen(),
+      );
+    },
     RegisterMailRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RegisterMailScreen(),
-      );
-    },
-    TempRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const TempScreen(),
-      );
-    },
-    TempRoute2.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const TempScreen2(),
       );
     },
   };
@@ -83,6 +83,20 @@ class DashboardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
@@ -97,6 +111,20 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [RegisterMailScreen]
 class RegisterMailRoute extends PageRouteInfo<void> {
   const RegisterMailRoute({List<PageRouteInfo>? children})
@@ -106,34 +134,6 @@ class RegisterMailRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterMailRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [TempScreen]
-class TempRoute extends PageRouteInfo<void> {
-  const TempRoute({List<PageRouteInfo>? children})
-      : super(
-          TempRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TempRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [TempScreen2]
-class TempRoute2 extends PageRouteInfo<void> {
-  const TempRoute2({List<PageRouteInfo>? children})
-      : super(
-          TempRoute2.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TempRoute2';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'images.dart';
 
 const isDarkModeOnPref = 'isDarkModeOnPref';
 

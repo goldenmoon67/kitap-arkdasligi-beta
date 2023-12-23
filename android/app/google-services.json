@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "711798633081",
+    "project_id": "kitap-arkadasligi",
+    "storage_bucket": "kitap-arkadasligi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711798633081:android:4a655574cee4d5532c9aa8",
+        "android_client_info": {
+          "package_name": "com.example.kitap_arkadasligi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711798633081-cal2qal88d764ard9ru55t47ipj96m2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU821Ia1hLEAR2U8ByIJQg0AwHq0JibLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711798633081-cal2qal88d764ard9ru55t47ipj96m2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711798633081:android:6797edd3359149152c9aa8",
+        "android_client_info": {
+          "package_name": "com.goldenmoon.kitapdostu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711798633081-cal2qal88d764ard9ru55t47ipj96m2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU821Ia1hLEAR2U8ByIJQg0AwHq0JibLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711798633081-cal2qal88d764ard9ru55t47ipj96m2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

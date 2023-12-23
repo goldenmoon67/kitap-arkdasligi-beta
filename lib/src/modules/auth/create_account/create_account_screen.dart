@@ -18,14 +18,6 @@ class CreateAccountScreen extends StatefulWidget {
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  FocusNode focusEmail = FocusNode();
-  FocusNode focusPassword = FocusNode();
-
-  bool isIconTrue = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
