@@ -6,6 +6,7 @@ import 'package:kitap_arkadasligi/src/commons/images.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/login/bloc/login_bloc.dart';
 import 'package:kitap_arkadasligi/src/modules/dashboard/dashboard_screen.dart';
+import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
@@ -69,7 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is LoginSucces) {
+          AutoRouter.of(context).push(const DashboardRoute());
+        }
       },
       buildWhen: (previous, state) {
         return true;

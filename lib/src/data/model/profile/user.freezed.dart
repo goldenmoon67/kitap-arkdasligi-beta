@@ -23,8 +23,9 @@ mixin _$User {
   String get userId => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   List<dynamic> get friends => throw _privateConstructorUsedError;
-  List<String> get books => throw _privateConstructorUsedError;
+  List<BookUserProfile> get books => throw _privateConstructorUsedError;
   List<dynamic> get movies => throw _privateConstructorUsedError;
   List<dynamic> get series => throw _privateConstructorUsedError;
   List<dynamic> get advertisements => throw _privateConstructorUsedError;
@@ -44,8 +45,9 @@ abstract class $UserCopyWith<$Res> {
       {String userId,
       String nickName,
       String email,
+      String? imageUrl,
       List<dynamic> friends,
-      List<String> books,
+      List<BookUserProfile> books,
       List<dynamic> movies,
       List<dynamic> series,
       List<dynamic> advertisements,
@@ -68,6 +70,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? userId = null,
     Object? nickName = null,
     Object? email = null,
+    Object? imageUrl = freezed,
     Object? friends = null,
     Object? books = null,
     Object? movies = null,
@@ -88,6 +91,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       friends: null == friends
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -95,7 +102,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       books: null == books
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<BookUserProfile>,
       movies: null == movies
           ? _value.movies
           : movies // ignore: cast_nullable_to_non_nullable
@@ -127,8 +134,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String userId,
       String nickName,
       String email,
+      String? imageUrl,
       List<dynamic> friends,
-      List<String> books,
+      List<BookUserProfile> books,
       List<dynamic> movies,
       List<dynamic> series,
       List<dynamic> advertisements,
@@ -148,6 +156,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? nickName = null,
     Object? email = null,
+    Object? imageUrl = freezed,
     Object? friends = null,
     Object? books = null,
     Object? movies = null,
@@ -168,6 +177,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       friends: null == friends
           ? _value._friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -175,7 +188,7 @@ class __$$UserImplCopyWithImpl<$Res>
       books: null == books
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<BookUserProfile>,
       movies: null == movies
           ? _value._movies
           : movies // ignore: cast_nullable_to_non_nullable
@@ -203,8 +216,9 @@ class _$UserImpl implements _User {
       {required this.userId,
       required this.nickName,
       required this.email,
+      this.imageUrl,
       required final List<dynamic> friends,
-      required final List<String> books,
+      required final List<BookUserProfile> books,
       required final List<dynamic> movies,
       required final List<dynamic> series,
       required final List<dynamic> advertisements,
@@ -224,6 +238,8 @@ class _$UserImpl implements _User {
   final String nickName;
   @override
   final String email;
+  @override
+  final String? imageUrl;
   final List<dynamic> _friends;
   @override
   List<dynamic> get friends {
@@ -232,9 +248,9 @@ class _$UserImpl implements _User {
     return EqualUnmodifiableListView(_friends);
   }
 
-  final List<String> _books;
+  final List<BookUserProfile> _books;
   @override
-  List<String> get books {
+  List<BookUserProfile> get books {
     if (_books is EqualUnmodifiableListView) return _books;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_books);
@@ -269,7 +285,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, nickName: $nickName, email: $email, friends: $friends, books: $books, movies: $movies, series: $series, advertisements: $advertisements, rates: $rates)';
+    return 'User(userId: $userId, nickName: $nickName, email: $email, imageUrl: $imageUrl, friends: $friends, books: $books, movies: $movies, series: $series, advertisements: $advertisements, rates: $rates)';
   }
 
   @override
@@ -281,6 +297,8 @@ class _$UserImpl implements _User {
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(other._friends, _friends) &&
             const DeepCollectionEquality().equals(other._books, _books) &&
             const DeepCollectionEquality().equals(other._movies, _movies) &&
@@ -297,6 +315,7 @@ class _$UserImpl implements _User {
       userId,
       nickName,
       email,
+      imageUrl,
       const DeepCollectionEquality().hash(_friends),
       const DeepCollectionEquality().hash(_books),
       const DeepCollectionEquality().hash(_movies),
@@ -323,8 +342,9 @@ abstract class _User implements User {
       {required final String userId,
       required final String nickName,
       required final String email,
+      final String? imageUrl,
       required final List<dynamic> friends,
-      required final List<String> books,
+      required final List<BookUserProfile> books,
       required final List<dynamic> movies,
       required final List<dynamic> series,
       required final List<dynamic> advertisements,
@@ -339,9 +359,11 @@ abstract class _User implements User {
   @override
   String get email;
   @override
+  String? get imageUrl;
+  @override
   List<dynamic> get friends;
   @override
-  List<String> get books;
+  List<BookUserProfile> get books;
   @override
   List<dynamic> get movies;
   @override

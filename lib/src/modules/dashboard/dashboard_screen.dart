@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           return Scaffold(
             body: _pages.elementAt(_selectedIndex),
             bottomNavigationBar: BubbleBottomBar(
-              opacity: 1,
+              opacity: .4,
               currentIndex: _selectedIndex,
               elevation: 0,
               onTap: (index) {
@@ -61,17 +61,20 @@ BubbleBottomBarItem tab(IconData iconData, String tabName) {
       icon: Icon(
         iconData,
         size: 24,
-        color: Colors.black,
+        color: Colors.grey,
       ),
       activeIcon: Icon(
         iconData,
         size: 36,
-        color: Colors.white,
+        color: Colors.blueAccent,
       ),
       title: Text(
         tabName,
         style: primaryTextStyle(
-            size: 16, fontFamily: 'Medium', color: Colors.white),
+            size: 16,
+            fontFamily: 'Medium',
+            color: Colors.blueAccent,
+            weight: FontWeight.bold),
         maxLines: 1,
       ));
 }
