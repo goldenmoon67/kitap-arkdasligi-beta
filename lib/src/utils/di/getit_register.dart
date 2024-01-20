@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import "package:get_it/get_it.dart";
 import 'package:kitap_arkadasligi/src/configs/flavors.dart';
 import 'package:kitap_arkadasligi/src/data/repositories/auth/auth_repository_impl.dart';
+import 'package:kitap_arkadasligi/src/data/repositories/book/book_repository_impl.dart';
 import 'package:kitap_arkadasligi/src/data/repositories/user/user_repository_impl.dart';
 import 'package:kitap_arkadasligi/src/data/services/api/client/rest_client.dart';
 import 'package:kitap_arkadasligi/src/data/services/api/service/rest_api_service.dart';
@@ -10,6 +11,7 @@ import 'package:kitap_arkadasligi/src/data/services/oauth/oauth_secure_storage.d
 import 'package:kitap_arkadasligi/src/data/services/secure/secure_storage_service.dart';
 import 'package:kitap_arkadasligi/src/domain/managers/user_manager.dart';
 import 'package:kitap_arkadasligi/src/domain/repositories/auth/auth_repository.dart';
+import 'package:kitap_arkadasligi/src/domain/repositories/book/book_repository.dart';
 import 'package:kitap_arkadasligi/src/domain/repositories/user/user_repository.dart';
 import 'package:kitap_arkadasligi/src/logs/log_console.dart';
 import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
@@ -52,4 +54,5 @@ Future setupGetIt({bool testing = false}) async {
   getIt.registerSingleton(RestClient(getIt<Dio>()));
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
+  getIt.registerLazySingleton<BookRepository>(() => BookRepositoryImpl());
 }

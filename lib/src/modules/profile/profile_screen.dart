@@ -7,6 +7,7 @@ import 'package:kitap_arkadasligi/src/commons/app_component.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/user.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
+import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -370,7 +371,9 @@ class ProfileBookItem extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                AutoRouter.of(context).push(BookDetailRoute(bookId: book.id));
+              },
             ),
           )
         ],

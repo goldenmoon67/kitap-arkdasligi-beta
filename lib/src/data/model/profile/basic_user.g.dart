@@ -1,23 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'book_user_profile.dart';
+part of 'basic_user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BookUserProfileImpl _$$BookUserProfileImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BookUserProfileImpl(
-      id: json['id'] as String,
+_$BasicUserImpl _$$BasicUserImplFromJson(Map<String, dynamic> json) =>
+    _$BasicUserImpl(
+      userId: json['userId'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String?,
     );
 
-Map<String, dynamic> _$$BookUserProfileImplToJson(
-        _$BookUserProfileImpl instance) =>
+Map<String, dynamic> _$$BasicUserImplToJson(_$BasicUserImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'userId': instance.userId,
       'name': instance.name,
       'imageUrl': instance.imageUrl,
     };

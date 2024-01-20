@@ -6,6 +6,7 @@ part 'book_user_profile.g.dart';
 @freezed
 class BookUserProfile with _$BookUserProfile {
   const factory BookUserProfile({
+    required String id,
     required String name,
     String? imageUrl,
   }) = _BookUserProfile;

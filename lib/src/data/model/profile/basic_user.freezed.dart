@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'book_user_profile.dart';
+part of 'basic_user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,35 +14,34 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BookUserProfile _$BookUserProfileFromJson(Map<String, dynamic> json) {
-  return _BookUserProfile.fromJson(json);
+BasicUser _$BasicUserFromJson(Map<String, dynamic> json) {
+  return _BasicUser.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BookUserProfile {
-  String get id => throw _privateConstructorUsedError;
+mixin _$BasicUser {
+  String get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BookUserProfileCopyWith<BookUserProfile> get copyWith =>
+  $BasicUserCopyWith<BasicUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BookUserProfileCopyWith<$Res> {
-  factory $BookUserProfileCopyWith(
-          BookUserProfile value, $Res Function(BookUserProfile) then) =
-      _$BookUserProfileCopyWithImpl<$Res, BookUserProfile>;
+abstract class $BasicUserCopyWith<$Res> {
+  factory $BasicUserCopyWith(BasicUser value, $Res Function(BasicUser) then) =
+      _$BasicUserCopyWithImpl<$Res, BasicUser>;
   @useResult
-  $Res call({String id, String name, String? imageUrl});
+  $Res call({String userId, String name, String? imageUrl});
 }
 
 /// @nodoc
-class _$BookUserProfileCopyWithImpl<$Res, $Val extends BookUserProfile>
-    implements $BookUserProfileCopyWith<$Res> {
-  _$BookUserProfileCopyWithImpl(this._value, this._then);
+class _$BasicUserCopyWithImpl<$Res, $Val extends BasicUser>
+    implements $BasicUserCopyWith<$Res> {
+  _$BasicUserCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -52,14 +51,14 @@ class _$BookUserProfileCopyWithImpl<$Res, $Val extends BookUserProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
     Object? name = null,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -74,35 +73,35 @@ class _$BookUserProfileCopyWithImpl<$Res, $Val extends BookUserProfile>
 }
 
 /// @nodoc
-abstract class _$$BookUserProfileImplCopyWith<$Res>
-    implements $BookUserProfileCopyWith<$Res> {
-  factory _$$BookUserProfileImplCopyWith(_$BookUserProfileImpl value,
-          $Res Function(_$BookUserProfileImpl) then) =
-      __$$BookUserProfileImplCopyWithImpl<$Res>;
+abstract class _$$BasicUserImplCopyWith<$Res>
+    implements $BasicUserCopyWith<$Res> {
+  factory _$$BasicUserImplCopyWith(
+          _$BasicUserImpl value, $Res Function(_$BasicUserImpl) then) =
+      __$$BasicUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String? imageUrl});
+  $Res call({String userId, String name, String? imageUrl});
 }
 
 /// @nodoc
-class __$$BookUserProfileImplCopyWithImpl<$Res>
-    extends _$BookUserProfileCopyWithImpl<$Res, _$BookUserProfileImpl>
-    implements _$$BookUserProfileImplCopyWith<$Res> {
-  __$$BookUserProfileImplCopyWithImpl(
-      _$BookUserProfileImpl _value, $Res Function(_$BookUserProfileImpl) _then)
+class __$$BasicUserImplCopyWithImpl<$Res>
+    extends _$BasicUserCopyWithImpl<$Res, _$BasicUserImpl>
+    implements _$$BasicUserImplCopyWith<$Res> {
+  __$$BasicUserImplCopyWithImpl(
+      _$BasicUserImpl _value, $Res Function(_$BasicUserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
     Object? name = null,
     Object? imageUrl = freezed,
   }) {
-    return _then(_$BookUserProfileImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+    return _then(_$BasicUserImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -118,15 +117,15 @@ class __$$BookUserProfileImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BookUserProfileImpl implements _BookUserProfile {
-  const _$BookUserProfileImpl(
-      {required this.id, required this.name, this.imageUrl});
+class _$BasicUserImpl implements _BasicUser {
+  const _$BasicUserImpl(
+      {required this.userId, required this.name, this.imageUrl});
 
-  factory _$BookUserProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BookUserProfileImplFromJson(json);
+  factory _$BasicUserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BasicUserImplFromJson(json);
 
   @override
-  final String id;
+  final String userId;
   @override
   final String name;
   @override
@@ -134,15 +133,15 @@ class _$BookUserProfileImpl implements _BookUserProfile {
 
   @override
   String toString() {
-    return 'BookUserProfile(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'BasicUser(userId: $userId, name: $name, imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BookUserProfileImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            other is _$BasicUserImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
@@ -150,40 +149,39 @@ class _$BookUserProfileImpl implements _BookUserProfile {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, imageUrl);
+  int get hashCode => Object.hash(runtimeType, userId, name, imageUrl);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BookUserProfileImplCopyWith<_$BookUserProfileImpl> get copyWith =>
-      __$$BookUserProfileImplCopyWithImpl<_$BookUserProfileImpl>(
-          this, _$identity);
+  _$$BasicUserImplCopyWith<_$BasicUserImpl> get copyWith =>
+      __$$BasicUserImplCopyWithImpl<_$BasicUserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BookUserProfileImplToJson(
+    return _$$BasicUserImplToJson(
       this,
     );
   }
 }
 
-abstract class _BookUserProfile implements BookUserProfile {
-  const factory _BookUserProfile(
-      {required final String id,
+abstract class _BasicUser implements BasicUser {
+  const factory _BasicUser(
+      {required final String userId,
       required final String name,
-      final String? imageUrl}) = _$BookUserProfileImpl;
+      final String? imageUrl}) = _$BasicUserImpl;
 
-  factory _BookUserProfile.fromJson(Map<String, dynamic> json) =
-      _$BookUserProfileImpl.fromJson;
+  factory _BasicUser.fromJson(Map<String, dynamic> json) =
+      _$BasicUserImpl.fromJson;
 
   @override
-  String get id;
+  String get userId;
   @override
   String get name;
   @override
   String? get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$BookUserProfileImplCopyWith<_$BookUserProfileImpl> get copyWith =>
+  _$$BasicUserImplCopyWith<_$BasicUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

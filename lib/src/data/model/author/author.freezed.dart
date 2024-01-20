@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'book_user_profile.dart';
+part of 'author.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,35 +14,34 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BookUserProfile _$BookUserProfileFromJson(Map<String, dynamic> json) {
-  return _BookUserProfile.fromJson(json);
+Author _$AuthorFromJson(Map<String, dynamic> json) {
+  return _Author.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BookUserProfile {
+mixin _$Author {
+  @JsonKey(name: "_id")
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BookUserProfileCopyWith<BookUserProfile> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthorCopyWith<Author> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BookUserProfileCopyWith<$Res> {
-  factory $BookUserProfileCopyWith(
-          BookUserProfile value, $Res Function(BookUserProfile) then) =
-      _$BookUserProfileCopyWithImpl<$Res, BookUserProfile>;
+abstract class $AuthorCopyWith<$Res> {
+  factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
+      _$AuthorCopyWithImpl<$Res, Author>;
   @useResult
-  $Res call({String id, String name, String? imageUrl});
+  $Res call({@JsonKey(name: "_id") String id, String name, String? imageUrl});
 }
 
 /// @nodoc
-class _$BookUserProfileCopyWithImpl<$Res, $Val extends BookUserProfile>
-    implements $BookUserProfileCopyWith<$Res> {
-  _$BookUserProfileCopyWithImpl(this._value, this._then);
+class _$AuthorCopyWithImpl<$Res, $Val extends Author>
+    implements $AuthorCopyWith<$Res> {
+  _$AuthorCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -74,22 +73,21 @@ class _$BookUserProfileCopyWithImpl<$Res, $Val extends BookUserProfile>
 }
 
 /// @nodoc
-abstract class _$$BookUserProfileImplCopyWith<$Res>
-    implements $BookUserProfileCopyWith<$Res> {
-  factory _$$BookUserProfileImplCopyWith(_$BookUserProfileImpl value,
-          $Res Function(_$BookUserProfileImpl) then) =
-      __$$BookUserProfileImplCopyWithImpl<$Res>;
+abstract class _$$AuthorImplCopyWith<$Res> implements $AuthorCopyWith<$Res> {
+  factory _$$AuthorImplCopyWith(
+          _$AuthorImpl value, $Res Function(_$AuthorImpl) then) =
+      __$$AuthorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String? imageUrl});
+  $Res call({@JsonKey(name: "_id") String id, String name, String? imageUrl});
 }
 
 /// @nodoc
-class __$$BookUserProfileImplCopyWithImpl<$Res>
-    extends _$BookUserProfileCopyWithImpl<$Res, _$BookUserProfileImpl>
-    implements _$$BookUserProfileImplCopyWith<$Res> {
-  __$$BookUserProfileImplCopyWithImpl(
-      _$BookUserProfileImpl _value, $Res Function(_$BookUserProfileImpl) _then)
+class __$$AuthorImplCopyWithImpl<$Res>
+    extends _$AuthorCopyWithImpl<$Res, _$AuthorImpl>
+    implements _$$AuthorImplCopyWith<$Res> {
+  __$$AuthorImplCopyWithImpl(
+      _$AuthorImpl _value, $Res Function(_$AuthorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +97,7 @@ class __$$BookUserProfileImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = freezed,
   }) {
-    return _then(_$BookUserProfileImpl(
+    return _then(_$AuthorImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -118,14 +116,17 @@ class __$$BookUserProfileImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BookUserProfileImpl implements _BookUserProfile {
-  const _$BookUserProfileImpl(
-      {required this.id, required this.name, this.imageUrl});
+class _$AuthorImpl implements _Author {
+  const _$AuthorImpl(
+      {@JsonKey(name: "_id") required this.id,
+      required this.name,
+      this.imageUrl});
 
-  factory _$BookUserProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BookUserProfileImplFromJson(json);
+  factory _$AuthorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthorImplFromJson(json);
 
   @override
+  @JsonKey(name: "_id")
   final String id;
   @override
   final String name;
@@ -134,14 +135,14 @@ class _$BookUserProfileImpl implements _BookUserProfile {
 
   @override
   String toString() {
-    return 'BookUserProfile(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'Author(id: $id, name: $name, imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BookUserProfileImpl &&
+            other is _$AuthorImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -155,28 +156,27 @@ class _$BookUserProfileImpl implements _BookUserProfile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BookUserProfileImplCopyWith<_$BookUserProfileImpl> get copyWith =>
-      __$$BookUserProfileImplCopyWithImpl<_$BookUserProfileImpl>(
-          this, _$identity);
+  _$$AuthorImplCopyWith<_$AuthorImpl> get copyWith =>
+      __$$AuthorImplCopyWithImpl<_$AuthorImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BookUserProfileImplToJson(
+    return _$$AuthorImplToJson(
       this,
     );
   }
 }
 
-abstract class _BookUserProfile implements BookUserProfile {
-  const factory _BookUserProfile(
-      {required final String id,
+abstract class _Author implements Author {
+  const factory _Author(
+      {@JsonKey(name: "_id") required final String id,
       required final String name,
-      final String? imageUrl}) = _$BookUserProfileImpl;
+      final String? imageUrl}) = _$AuthorImpl;
 
-  factory _BookUserProfile.fromJson(Map<String, dynamic> json) =
-      _$BookUserProfileImpl.fromJson;
+  factory _Author.fromJson(Map<String, dynamic> json) = _$AuthorImpl.fromJson;
 
   @override
+  @JsonKey(name: "_id")
   String get id;
   @override
   String get name;
@@ -184,6 +184,6 @@ abstract class _BookUserProfile implements BookUserProfile {
   String? get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$BookUserProfileImplCopyWith<_$BookUserProfileImpl> get copyWith =>
+  _$$AuthorImplCopyWith<_$AuthorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

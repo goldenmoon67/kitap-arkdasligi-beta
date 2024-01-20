@@ -15,6 +15,26 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdvsDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<AdvsDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AdvsDetailScreen(
+          key: args.key,
+          bookId: args.bookId,
+        ),
+      );
+    },
+    BookDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<BookDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: BookDetailScreen(
+          key: args.key,
+          bookId: args.bookId,
+        ),
+      );
+    },
     CreateAccountRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -57,6 +77,82 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AdvsDetailScreen]
+class AdvsDetailRoute extends PageRouteInfo<AdvsDetailRouteArgs> {
+  AdvsDetailRoute({
+    Key? key,
+    required String bookId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AdvsDetailRoute.name,
+          args: AdvsDetailRouteArgs(
+            key: key,
+            bookId: bookId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AdvsDetailRoute';
+
+  static const PageInfo<AdvsDetailRouteArgs> page =
+      PageInfo<AdvsDetailRouteArgs>(name);
+}
+
+class AdvsDetailRouteArgs {
+  const AdvsDetailRouteArgs({
+    this.key,
+    required this.bookId,
+  });
+
+  final Key? key;
+
+  final String bookId;
+
+  @override
+  String toString() {
+    return 'AdvsDetailRouteArgs{key: $key, bookId: $bookId}';
+  }
+}
+
+/// generated route for
+/// [BookDetailScreen]
+class BookDetailRoute extends PageRouteInfo<BookDetailRouteArgs> {
+  BookDetailRoute({
+    Key? key,
+    required String bookId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BookDetailRoute.name,
+          args: BookDetailRouteArgs(
+            key: key,
+            bookId: bookId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BookDetailRoute';
+
+  static const PageInfo<BookDetailRouteArgs> page =
+      PageInfo<BookDetailRouteArgs>(name);
+}
+
+class BookDetailRouteArgs {
+  const BookDetailRouteArgs({
+    this.key,
+    required this.bookId,
+  });
+
+  final Key? key;
+
+  final String bookId;
+
+  @override
+  String toString() {
+    return 'BookDetailRouteArgs{key: $key, bookId: $bookId}';
+  }
 }
 
 /// generated route for
