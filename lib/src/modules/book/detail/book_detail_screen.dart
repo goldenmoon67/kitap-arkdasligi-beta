@@ -2,12 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
 import 'package:kitap_arkadasligi/src/modules/book/detail/bloc/book_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 @RoutePage()
 class BookDetailScreen extends StatefulWidget {
@@ -37,7 +35,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
             color: Colors.black,
             bgColor: context.scaffoldBackgroundColor,
             showShadow: true),
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: text(txt: value, color: Colors.black),
       );
     }
@@ -78,7 +76,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
                         child: Column(
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -109,7 +107,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                           children: [
                                             Text(
                                               state.book.name,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 18,
                                                 overflow: TextOverflow.fade,
@@ -132,7 +130,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -160,7 +158,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 4,
                                               ),
                                               text(
@@ -171,8 +169,8 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                      const Padding(
+                                        padding: EdgeInsets.all(8.0),
                                         child: AddBookMark(isSelected: true),
                                       ),
                                     ],
@@ -188,12 +186,12 @@ class BookDetailScreenState extends State<BookDetailScreen>
                               labelColor: Colors.blue,
                               tabs: <Widget>[
                                 Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child:
                                       text(txt: "Yorumlar", color: Colors.grey),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child: text(
                                       txt: "Okuyanlar", color: Colors.grey),
                                 ),
@@ -202,8 +200,8 @@ class BookDetailScreenState extends State<BookDetailScreen>
                             SizedBox(
                               height: MediaQuery.of(context).size.height,
                               child: TabBarView(
-                                children: [Text("data"), Text("545")],
                                 controller: controller,
+                                children: const [Text("data"), Text("545")],
                               ),
                             ),
                           ],
@@ -302,7 +300,7 @@ BoxDecoration boxDecoration(
     color: bgColor ?? appStore.scaffoldBackground,
     boxShadow: showShadow
         ? defaultBoxShadow(shadowColor: shadowColorGlobal)
-        : [BoxShadow(color: Colors.transparent)],
+        : [const BoxShadow(color: Colors.transparent)],
     border: Border.all(color: color),
     borderRadius: BorderRadius.all(Radius.circular(radius)),
   );
@@ -313,7 +311,7 @@ class T10TopBar extends StatefulWidget {
   var titleName;
   final isDirect;
 
-  T10TopBar(var this.titleName, {this.isDirect = false});
+  T10TopBar(var this.titleName, {super.key, this.isDirect = false});
 
   @override
   State<StatefulWidget> createState() {
@@ -338,7 +336,7 @@ class T10TopBarState extends State<T10TopBar> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               color: appStore.iconColor,
               onPressed: () {
                 if (isDirect) {
@@ -358,7 +356,7 @@ class T10TopBarState extends State<T10TopBar> {
                 size: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
           ],

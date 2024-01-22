@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kitap_arkadasligi/src/data/model/author/author.dart';
 
 part 'advs_detail.freezed.dart';
 part 'advs_detail.g.dart';

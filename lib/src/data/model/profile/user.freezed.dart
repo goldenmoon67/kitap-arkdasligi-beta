@@ -28,7 +28,8 @@ mixin _$User {
   List<BookUserProfile> get books => throw _privateConstructorUsedError;
   List<dynamic> get movies => throw _privateConstructorUsedError;
   List<dynamic> get series => throw _privateConstructorUsedError;
-  List<dynamic> get advertisements => throw _privateConstructorUsedError;
+  List<AdvsBasic> get advertisements => throw _privateConstructorUsedError;
+  List<CommentBasic> get comments => throw _privateConstructorUsedError;
   int get rates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +51,8 @@ abstract class $UserCopyWith<$Res> {
       List<BookUserProfile> books,
       List<dynamic> movies,
       List<dynamic> series,
-      List<dynamic> advertisements,
+      List<AdvsBasic> advertisements,
+      List<CommentBasic> comments,
       int rates});
 }
 
@@ -76,6 +78,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? movies = null,
     Object? series = null,
     Object? advertisements = null,
+    Object? comments = null,
     Object? rates = null,
   }) {
     return _then(_value.copyWith(
@@ -114,7 +117,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       advertisements: null == advertisements
           ? _value.advertisements
           : advertisements // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AdvsBasic>,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentBasic>,
       rates: null == rates
           ? _value.rates
           : rates // ignore: cast_nullable_to_non_nullable
@@ -139,7 +146,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       List<BookUserProfile> books,
       List<dynamic> movies,
       List<dynamic> series,
-      List<dynamic> advertisements,
+      List<AdvsBasic> advertisements,
+      List<CommentBasic> comments,
       int rates});
 }
 
@@ -162,6 +170,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? movies = null,
     Object? series = null,
     Object? advertisements = null,
+    Object? comments = null,
     Object? rates = null,
   }) {
     return _then(_$UserImpl(
@@ -200,7 +209,11 @@ class __$$UserImplCopyWithImpl<$Res>
       advertisements: null == advertisements
           ? _value._advertisements
           : advertisements // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<AdvsBasic>,
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentBasic>,
       rates: null == rates
           ? _value.rates
           : rates // ignore: cast_nullable_to_non_nullable
@@ -221,13 +234,15 @@ class _$UserImpl implements _User {
       required final List<BookUserProfile> books,
       required final List<dynamic> movies,
       required final List<dynamic> series,
-      required final List<dynamic> advertisements,
+      required final List<AdvsBasic> advertisements,
+      required final List<CommentBasic> comments,
       required this.rates})
       : _friends = friends,
         _books = books,
         _movies = movies,
         _series = series,
-        _advertisements = advertisements;
+        _advertisements = advertisements,
+        _comments = comments;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -272,12 +287,20 @@ class _$UserImpl implements _User {
     return EqualUnmodifiableListView(_series);
   }
 
-  final List<dynamic> _advertisements;
+  final List<AdvsBasic> _advertisements;
   @override
-  List<dynamic> get advertisements {
+  List<AdvsBasic> get advertisements {
     if (_advertisements is EqualUnmodifiableListView) return _advertisements;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_advertisements);
+  }
+
+  final List<CommentBasic> _comments;
+  @override
+  List<CommentBasic> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
   }
 
   @override
@@ -285,7 +308,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, nickName: $nickName, email: $email, imageUrl: $imageUrl, friends: $friends, books: $books, movies: $movies, series: $series, advertisements: $advertisements, rates: $rates)';
+    return 'User(userId: $userId, nickName: $nickName, email: $email, imageUrl: $imageUrl, friends: $friends, books: $books, movies: $movies, series: $series, advertisements: $advertisements, comments: $comments, rates: $rates)';
   }
 
   @override
@@ -305,6 +328,7 @@ class _$UserImpl implements _User {
             const DeepCollectionEquality().equals(other._series, _series) &&
             const DeepCollectionEquality()
                 .equals(other._advertisements, _advertisements) &&
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.rates, rates) || other.rates == rates));
   }
 
@@ -321,6 +345,7 @@ class _$UserImpl implements _User {
       const DeepCollectionEquality().hash(_movies),
       const DeepCollectionEquality().hash(_series),
       const DeepCollectionEquality().hash(_advertisements),
+      const DeepCollectionEquality().hash(_comments),
       rates);
 
   @JsonKey(ignore: true)
@@ -347,7 +372,8 @@ abstract class _User implements User {
       required final List<BookUserProfile> books,
       required final List<dynamic> movies,
       required final List<dynamic> series,
-      required final List<dynamic> advertisements,
+      required final List<AdvsBasic> advertisements,
+      required final List<CommentBasic> comments,
       required final int rates}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -369,7 +395,9 @@ abstract class _User implements User {
   @override
   List<dynamic> get series;
   @override
-  List<dynamic> get advertisements;
+  List<AdvsBasic> get advertisements;
+  @override
+  List<CommentBasic> get comments;
   @override
   int get rates;
   @override

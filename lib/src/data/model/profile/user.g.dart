@@ -17,7 +17,12 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
           .toList(),
       movies: json['movies'] as List<dynamic>,
       series: json['series'] as List<dynamic>,
-      advertisements: json['advertisements'] as List<dynamic>,
+      advertisements: (json['advertisements'] as List<dynamic>)
+          .map((e) => AdvsBasic.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      comments: (json['comments'] as List<dynamic>)
+          .map((e) => CommentBasic.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rates: json['rates'] as int,
     );
 
@@ -32,5 +37,6 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'movies': instance.movies,
       'series': instance.series,
       'advertisements': instance.advertisements,
+      'comments': instance.comments,
       'rates': instance.rates,
     };

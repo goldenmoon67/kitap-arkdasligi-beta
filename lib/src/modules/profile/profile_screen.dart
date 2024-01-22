@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/app_component.dart';
+import 'package:kitap_arkadasligi/src/commons/widgets.dart';
+import 'package:kitap_arkadasligi/src/data/model/advs/basic/advs_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
+import 'package:kitap_arkadasligi/src/data/model/comments.dart/comments_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/user.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
 import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
@@ -180,21 +183,34 @@ class ProfileScreenState extends State<ProfileScreen> {
                             const EdgeInsets.only(left: 8, top: 20, right: 8),
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          itemCount: 2,
+                          itemCount: state.user.advertisements.length,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: ProfileAdvsItem(),
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ProfileAdvsItem(
+                                  advs: state.user.advertisements[index]),
                             );
                           },
                         ),
                       ),
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 16, top: 20, right: 16),
-                        child: Text("Yorumlarım Burada olacak"),
+                            const EdgeInsets.only(left: 8, top: 20, right: 8),
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: state.user.advertisements.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ProfileCommentItem(
+                                  comment: state.user.comments[index]),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -241,7 +257,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 }
 
 class ProfileAdvsItem extends StatelessWidget {
-  const ProfileAdvsItem({super.key});
+  final AdvsBasic advs;
+  const ProfileAdvsItem({super.key, required this.advs});
 
   @override
   Widget build(BuildContext context) {
@@ -263,34 +280,27 @@ class ProfileAdvsItem extends StatelessWidget {
               child: Stack(
                 children: [
                   CachedNetworkImage(
-                    imageUrl: "https://picsum.photos/200/300",
+                    imageUrl:
+                        advs.bookImageUrl ?? "https://picsum.photos/200/300",
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 8, right: 16, bottom: 8),
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 16, bottom: 8),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "Saatleri Ayarlama Enstitüsü",
-                            style: TextStyle(
+                            advs.title,
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w500),
                             overflow: TextOverflow.fade,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
-                          ),
-                          Text(
-                            "Ahmet Hamdi Tanpınar",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            overflow: TextOverflow.fade,
                           ),
                         ],
                       ),
@@ -305,15 +315,13 @@ class ProfileAdvsItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Arkdaş gelsin",
+                Text(advs.title,
                     style: primaryTextStyle(
                       size: 20,
                       weight: FontWeight.bold,
                       color: Colors.blue,
                     )),
-                Text(
-                    "Çok yalnızım arkadaşım yok beraber okuyup yorumlayalım knk",
-                    style: primaryTextStyle(size: 14)),
+                Text(advs.description, style: primaryTextStyle(size: 14)),
               ],
             ).paddingOnly(left: 16, right: 16),
           ),
@@ -375,6 +383,66 @@ class ProfileBookItem extends StatelessWidget {
                 AutoRouter.of(context).push(BookDetailRoute(bookId: book.id));
               },
             ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileCommentItem extends StatelessWidget {
+  final CommentBasic comment;
+  const ProfileCommentItem({super.key, required this.comment});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      decoration: boxDecoration(
+        radius: 10,
+        showShadow: true,
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          clipBehavior: Clip.hardEdge,
+                          child: CachedNetworkImage(
+                            imageUrl: comment.relatedBook.imageUrl ??
+                                "https://picsum.photos/50/50",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      text(
+                        txt: comment.relatedBook.name,
+                        color: Colors.grey.shade700,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(comment.text),
           )
         ],
       ),
