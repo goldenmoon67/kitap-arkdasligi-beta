@@ -21,7 +21,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: AdvsDetailScreen(
           key: args.key,
-          bookId: args.bookId,
+          advsId: args.advsId,
         ),
       );
     },
@@ -84,13 +84,13 @@ abstract class _$AppRouter extends RootStackRouter {
 class AdvsDetailRoute extends PageRouteInfo<AdvsDetailRouteArgs> {
   AdvsDetailRoute({
     Key? key,
-    required String bookId,
+    required String advsId,
     List<PageRouteInfo>? children,
   }) : super(
           AdvsDetailRoute.name,
           args: AdvsDetailRouteArgs(
             key: key,
-            bookId: bookId,
+            advsId: advsId,
           ),
           initialChildren: children,
         );
@@ -104,16 +104,16 @@ class AdvsDetailRoute extends PageRouteInfo<AdvsDetailRouteArgs> {
 class AdvsDetailRouteArgs {
   const AdvsDetailRouteArgs({
     this.key,
-    required this.bookId,
+    required this.advsId,
   });
 
   final Key? key;
 
-  final String bookId;
+  final String advsId;
 
   @override
   String toString() {
-    return 'AdvsDetailRouteArgs{key: $key, bookId: $bookId}';
+    return 'AdvsDetailRouteArgs{key: $key, advsId: $advsId}';
   }
 }
 

@@ -8,15 +8,17 @@ part of 'advs_detail.dart';
 
 _$AdvsDetailImpl _$$AdvsDetailImplFromJson(Map<String, dynamic> json) =>
     _$AdvsDetailImpl(
-      comments: json['comments'] as List<dynamic>,
-      acceptedPrivateConv: json['acceptedPrivateConv'] as List<dynamic>,
-      privateComments: json['privateComments'] as List<dynamic>,
+      comments: json['comments'] as List<dynamic>?,
+      acceptedPrivateConv: json['acceptedPrivateConv'] as List<dynamic>?,
+      privateComments: json['privateComments'] as List<dynamic>?,
       id: json['_id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      userId: json['userId'] as String,
+      ownerDetail:
+          BasicUser.fromJson(json['ownerDetail'] as Map<String, dynamic>),
       prodType: json['prodType'] as String,
-      prodId: json['prodId'] as String,
+      bookDetails:
+          BookUserProfile.fromJson(json['bookDetails'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AdvsDetailImplToJson(_$AdvsDetailImpl instance) =>
@@ -27,7 +29,7 @@ Map<String, dynamic> _$$AdvsDetailImplToJson(_$AdvsDetailImpl instance) =>
       '_id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'userId': instance.userId,
+      'ownerDetail': instance.ownerDetail,
       'prodType': instance.prodType,
-      'prodId': instance.prodId,
+      'bookDetails': instance.bookDetails,
     };

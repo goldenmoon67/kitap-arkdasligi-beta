@@ -262,70 +262,75 @@ class ProfileAdvsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: 100,
-      decoration: boxDecoration(
-        radius: 10,
-        showShadow: true,
-        bgColor: Colors.blue.shade100,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Stack(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl:
-                        advs.bookImageUrl ?? "https://picsum.photos/200/300",
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 8, right: 16, bottom: 8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            advs.title,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500),
-                            overflow: TextOverflow.fade,
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                        ],
+    return InkWell(
+      onTap: () {
+        AutoRouter.of(context).push(AdvsDetailRoute(advsId: advs.id));
+      },
+      child: Container(
+        height: 200,
+        width: 100,
+        decoration: boxDecoration(
+          radius: 10,
+          showShadow: true,
+          bgColor: Colors.blue.shade100,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Stack(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl:
+                          advs.bookImageUrl ?? "https://picsum.photos/200/300",
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8, right: 16, bottom: 8),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              advs.title,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w500),
+                              overflow: TextOverflow.fade,
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(advs.title,
-                    style: primaryTextStyle(
-                      size: 20,
-                      weight: FontWeight.bold,
-                      color: Colors.blue,
-                    )),
-                Text(advs.description, style: primaryTextStyle(size: 14)),
-              ],
-            ).paddingOnly(left: 16, right: 16),
-          ),
-        ],
+            Expanded(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(advs.title,
+                      style: primaryTextStyle(
+                        size: 20,
+                        weight: FontWeight.bold,
+                        color: Colors.blue,
+                      )),
+                  Text(advs.description, style: primaryTextStyle(size: 14)),
+                ],
+              ).paddingOnly(left: 16, right: 16),
+            ),
+          ],
+        ),
       ),
     );
   }

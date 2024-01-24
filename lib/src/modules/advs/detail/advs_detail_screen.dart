@@ -9,9 +9,9 @@ import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
 class AdvsDetailScreen extends StatefulWidget {
-  final String bookId;
+  final String advsId;
 
-  const AdvsDetailScreen({super.key, required this.bookId});
+  const AdvsDetailScreen({super.key, required this.advsId});
 
   @override
   AdvsDetailScreenState createState() => AdvsDetailScreenState();
@@ -58,7 +58,7 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
     }
 
     return BlocProvider(
-      create: (context) => AdvsBloc(widget.bookId)..add(AdvsStartEvent()),
+      create: (context) => AdvsBloc(widget.advsId)..add(AdvsStartEvent()),
       child: BlocConsumer<AdvsBloc, AdvsState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -70,7 +70,7 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
               body: SafeArea(
                 child: Column(
                   children: <Widget>[
-                    T10TopBar("Kitap Detay"),
+                    T10TopBar(""),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -80,55 +80,35 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 200,
-                                        width: 150,
-                                        child: ClipRRect(
-                                          clipBehavior: Clip.antiAlias,
-                                          child: CachedNetworkImage(
-                                            imageUrl:
-                                                "https://picsum.photos/200/300",
-                                            fit: BoxFit.fill,
-                                          ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24),
+                                    child: SizedBox(
+                                      height: 200,
+                                      width: double.infinity,
+                                      child: ClipRRect(
+                                        clipBehavior: Clip.antiAlias,
+                                        child: CachedNetworkImage(
+                                          imageUrl: state
+                                                  .advs.bookDetails.imageUrl ??
+                                              "https://picsum.photos/200/300",
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 6, horizontal: 2),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              state.advs.title,
-                                              style: const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18,
-                                                overflow: TextOverflow.fade,
-                                              ),
-                                            )
-                                            /*  text(
-                                              txt: state.book.name,
-                                              color: Colors.black,
-                                              size: 20,
-                                              textAlign: TextAlign.start,
-                                            ), */
-                                            ,
-                                            text(
-                                              txt: state.advs.description ?? "",
-                                              color: Colors.grey.shade700,
-                                              size: 14,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                  ),
+                                  Text(
+                                    state.advs.title,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      overflow: TextOverflow.fade,
+                                    ),
+                                  ),
+                                  text(
+                                    txt: state.advs.description ?? "",
+                                    color: Colors.grey.shade700,
+                                    size: 14,
                                   ),
                                   const SizedBox(height: 10),
                                   Row(
@@ -151,7 +131,10 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                                                       BorderRadius.circular(50),
                                                   clipBehavior: Clip.hardEdge,
                                                   child: CachedNetworkImage(
-                                                    imageUrl:
+                                                    imageUrl: state
+                                                            .advs
+                                                            .ownerDetail
+                                                            .imageUrl ??
                                                         "https://picsum.photos/50/50",
                                                     fit: BoxFit.fill,
                                                   ),
@@ -161,21 +144,107 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                                                 width: 4,
                                               ),
                                               text(
-                                                txt: state.advs.title,
+                                                txt:
+                                                    state.advs.ownerDetail.name,
                                                 color: Colors.grey.shade700,
                                               ),
                                             ],
                                           ),
                                         ),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: AddAdvsMark(isSelected: true),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.blue,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(1.5),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 4),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: <Widget>[
+                                                    text(
+                                                      txt: "Kitap Detayı gör",
+                                                      size: 18,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 4,
+                                                    ),
+                                                    const Icon(
+                                                      Icons.book_rounded,
+                                                      color: Colors.blue,
+                                                      size: 30,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 4,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  mInfo(state.advs.userId.toList())
                                 ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: Text(
+                                                "İlan için İletişime geç",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             TabBar(
@@ -185,14 +254,17 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                               labelColor: Colors.blue,
                               tabs: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child:
                                       text(txt: "Yorumlar", color: Colors.grey),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child: text(
-                                      txt: "Okuyanlar", color: Colors.grey),
+                                      txt: "Etkileşimde bulunanlar",
+                                      color: Colors.grey),
                                 ),
                               ],
                             ),
@@ -200,7 +272,15 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                               height: MediaQuery.of(context).size.height,
                               child: TabBarView(
                                 controller: controller,
-                                children: const [Text("data"), Text("545")],
+                                children: const [
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Buradaki Yorumlar sen ve ilan sahibi arasındadır. 3. kişiler bu yorumları göremez",
+                                    ),
+                                  ),
+                                  Text("545")
+                                ],
                               ),
                             ),
                           ],

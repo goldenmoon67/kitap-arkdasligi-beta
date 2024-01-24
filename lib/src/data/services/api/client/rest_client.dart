@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kitap_arkadasligi/src/data/model/advs/detail/advs_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/create/login_create_model.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/response/login_response.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/detail/book_detail.dart';
@@ -18,4 +19,7 @@ abstract class RestClient {
 
   @GET("books/{id}")
   Future<BookDetail> getBookDetail(@Path() String id);
+
+  @GET("advs/{id}")
+  Future<AdvsDetail> getAdvsDetail(@Path() String id);
 }

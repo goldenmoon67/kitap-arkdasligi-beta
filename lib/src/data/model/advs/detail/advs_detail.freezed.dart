@@ -20,16 +20,16 @@ AdvsDetail _$AdvsDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AdvsDetail {
-  List<dynamic> get comments => throw _privateConstructorUsedError;
-  List<dynamic> get acceptedPrivateConv => throw _privateConstructorUsedError;
-  List<dynamic> get privateComments => throw _privateConstructorUsedError;
+  List<dynamic>? get comments => throw _privateConstructorUsedError;
+  List<dynamic>? get acceptedPrivateConv => throw _privateConstructorUsedError;
+  List<dynamic>? get privateComments => throw _privateConstructorUsedError;
   @JsonKey(name: "_id")
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
+  BasicUser get ownerDetail => throw _privateConstructorUsedError;
   String get prodType => throw _privateConstructorUsedError;
-  String get prodId => throw _privateConstructorUsedError;
+  BookUserProfile get bookDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,15 +44,18 @@ abstract class $AdvsDetailCopyWith<$Res> {
       _$AdvsDetailCopyWithImpl<$Res, AdvsDetail>;
   @useResult
   $Res call(
-      {List<dynamic> comments,
-      List<dynamic> acceptedPrivateConv,
-      List<dynamic> privateComments,
+      {List<dynamic>? comments,
+      List<dynamic>? acceptedPrivateConv,
+      List<dynamic>? privateComments,
       @JsonKey(name: "_id") String id,
       String title,
       String description,
-      String userId,
+      BasicUser ownerDetail,
       String prodType,
-      String prodId});
+      BookUserProfile bookDetails});
+
+  $BasicUserCopyWith<$Res> get ownerDetail;
+  $BookUserProfileCopyWith<$Res> get bookDetails;
 }
 
 /// @nodoc
@@ -68,29 +71,29 @@ class _$AdvsDetailCopyWithImpl<$Res, $Val extends AdvsDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? comments = null,
-    Object? acceptedPrivateConv = null,
-    Object? privateComments = null,
+    Object? comments = freezed,
+    Object? acceptedPrivateConv = freezed,
+    Object? privateComments = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? userId = null,
+    Object? ownerDetail = null,
     Object? prodType = null,
-    Object? prodId = null,
+    Object? bookDetails = null,
   }) {
     return _then(_value.copyWith(
-      comments: null == comments
+      comments: freezed == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      acceptedPrivateConv: null == acceptedPrivateConv
+              as List<dynamic>?,
+      acceptedPrivateConv: freezed == acceptedPrivateConv
           ? _value.acceptedPrivateConv
           : acceptedPrivateConv // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      privateComments: null == privateComments
+              as List<dynamic>?,
+      privateComments: freezed == privateComments
           ? _value.privateComments
           : privateComments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -103,19 +106,35 @@ class _$AdvsDetailCopyWithImpl<$Res, $Val extends AdvsDetail>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      ownerDetail: null == ownerDetail
+          ? _value.ownerDetail
+          : ownerDetail // ignore: cast_nullable_to_non_nullable
+              as BasicUser,
       prodType: null == prodType
           ? _value.prodType
           : prodType // ignore: cast_nullable_to_non_nullable
               as String,
-      prodId: null == prodId
-          ? _value.prodId
-          : prodId // ignore: cast_nullable_to_non_nullable
-              as String,
+      bookDetails: null == bookDetails
+          ? _value.bookDetails
+          : bookDetails // ignore: cast_nullable_to_non_nullable
+              as BookUserProfile,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasicUserCopyWith<$Res> get ownerDetail {
+    return $BasicUserCopyWith<$Res>(_value.ownerDetail, (value) {
+      return _then(_value.copyWith(ownerDetail: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookUserProfileCopyWith<$Res> get bookDetails {
+    return $BookUserProfileCopyWith<$Res>(_value.bookDetails, (value) {
+      return _then(_value.copyWith(bookDetails: value) as $Val);
+    });
   }
 }
 
@@ -128,15 +147,20 @@ abstract class _$$AdvsDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<dynamic> comments,
-      List<dynamic> acceptedPrivateConv,
-      List<dynamic> privateComments,
+      {List<dynamic>? comments,
+      List<dynamic>? acceptedPrivateConv,
+      List<dynamic>? privateComments,
       @JsonKey(name: "_id") String id,
       String title,
       String description,
-      String userId,
+      BasicUser ownerDetail,
       String prodType,
-      String prodId});
+      BookUserProfile bookDetails});
+
+  @override
+  $BasicUserCopyWith<$Res> get ownerDetail;
+  @override
+  $BookUserProfileCopyWith<$Res> get bookDetails;
 }
 
 /// @nodoc
@@ -150,29 +174,29 @@ class __$$AdvsDetailImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? comments = null,
-    Object? acceptedPrivateConv = null,
-    Object? privateComments = null,
+    Object? comments = freezed,
+    Object? acceptedPrivateConv = freezed,
+    Object? privateComments = freezed,
     Object? id = null,
     Object? title = null,
     Object? description = null,
-    Object? userId = null,
+    Object? ownerDetail = null,
     Object? prodType = null,
-    Object? prodId = null,
+    Object? bookDetails = null,
   }) {
     return _then(_$AdvsDetailImpl(
-      comments: null == comments
+      comments: freezed == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      acceptedPrivateConv: null == acceptedPrivateConv
+              as List<dynamic>?,
+      acceptedPrivateConv: freezed == acceptedPrivateConv
           ? _value._acceptedPrivateConv
           : acceptedPrivateConv // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      privateComments: null == privateComments
+              as List<dynamic>?,
+      privateComments: freezed == privateComments
           ? _value._privateComments
           : privateComments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -185,18 +209,18 @@ class __$$AdvsDetailImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      ownerDetail: null == ownerDetail
+          ? _value.ownerDetail
+          : ownerDetail // ignore: cast_nullable_to_non_nullable
+              as BasicUser,
       prodType: null == prodType
           ? _value.prodType
           : prodType // ignore: cast_nullable_to_non_nullable
               as String,
-      prodId: null == prodId
-          ? _value.prodId
-          : prodId // ignore: cast_nullable_to_non_nullable
-              as String,
+      bookDetails: null == bookDetails
+          ? _value.bookDetails
+          : bookDetails // ignore: cast_nullable_to_non_nullable
+              as BookUserProfile,
     ));
   }
 }
@@ -205,15 +229,15 @@ class __$$AdvsDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdvsDetailImpl implements _AdvsDetail {
   const _$AdvsDetailImpl(
-      {required final List<dynamic> comments,
-      required final List<dynamic> acceptedPrivateConv,
-      required final List<dynamic> privateComments,
+      {required final List<dynamic>? comments,
+      required final List<dynamic>? acceptedPrivateConv,
+      required final List<dynamic>? privateComments,
       @JsonKey(name: "_id") required this.id,
       required this.title,
       required this.description,
-      required this.userId,
+      required this.ownerDetail,
       required this.prodType,
-      required this.prodId})
+      required this.bookDetails})
       : _comments = comments,
         _acceptedPrivateConv = acceptedPrivateConv,
         _privateComments = privateComments;
@@ -221,29 +245,35 @@ class _$AdvsDetailImpl implements _AdvsDetail {
   factory _$AdvsDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$AdvsDetailImplFromJson(json);
 
-  final List<dynamic> _comments;
+  final List<dynamic>? _comments;
   @override
-  List<dynamic> get comments {
+  List<dynamic>? get comments {
+    final value = _comments;
+    if (value == null) return null;
     if (_comments is EqualUnmodifiableListView) return _comments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_comments);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic> _acceptedPrivateConv;
+  final List<dynamic>? _acceptedPrivateConv;
   @override
-  List<dynamic> get acceptedPrivateConv {
+  List<dynamic>? get acceptedPrivateConv {
+    final value = _acceptedPrivateConv;
+    if (value == null) return null;
     if (_acceptedPrivateConv is EqualUnmodifiableListView)
       return _acceptedPrivateConv;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_acceptedPrivateConv);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic> _privateComments;
+  final List<dynamic>? _privateComments;
   @override
-  List<dynamic> get privateComments {
+  List<dynamic>? get privateComments {
+    final value = _privateComments;
+    if (value == null) return null;
     if (_privateComments is EqualUnmodifiableListView) return _privateComments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_privateComments);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -254,15 +284,15 @@ class _$AdvsDetailImpl implements _AdvsDetail {
   @override
   final String description;
   @override
-  final String userId;
+  final BasicUser ownerDetail;
   @override
   final String prodType;
   @override
-  final String prodId;
+  final BookUserProfile bookDetails;
 
   @override
   String toString() {
-    return 'AdvsDetail(comments: $comments, acceptedPrivateConv: $acceptedPrivateConv, privateComments: $privateComments, id: $id, title: $title, description: $description, userId: $userId, prodType: $prodType, prodId: $prodId)';
+    return 'AdvsDetail(comments: $comments, acceptedPrivateConv: $acceptedPrivateConv, privateComments: $privateComments, id: $id, title: $title, description: $description, ownerDetail: $ownerDetail, prodType: $prodType, bookDetails: $bookDetails)';
   }
 
   @override
@@ -279,10 +309,12 @@ class _$AdvsDetailImpl implements _AdvsDetail {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.ownerDetail, ownerDetail) ||
+                other.ownerDetail == ownerDetail) &&
             (identical(other.prodType, prodType) ||
                 other.prodType == prodType) &&
-            (identical(other.prodId, prodId) || other.prodId == prodId));
+            (identical(other.bookDetails, bookDetails) ||
+                other.bookDetails == bookDetails));
   }
 
   @JsonKey(ignore: true)
@@ -295,9 +327,9 @@ class _$AdvsDetailImpl implements _AdvsDetail {
       id,
       title,
       description,
-      userId,
+      ownerDetail,
       prodType,
-      prodId);
+      bookDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -315,25 +347,25 @@ class _$AdvsDetailImpl implements _AdvsDetail {
 
 abstract class _AdvsDetail implements AdvsDetail {
   const factory _AdvsDetail(
-      {required final List<dynamic> comments,
-      required final List<dynamic> acceptedPrivateConv,
-      required final List<dynamic> privateComments,
+      {required final List<dynamic>? comments,
+      required final List<dynamic>? acceptedPrivateConv,
+      required final List<dynamic>? privateComments,
       @JsonKey(name: "_id") required final String id,
       required final String title,
       required final String description,
-      required final String userId,
+      required final BasicUser ownerDetail,
       required final String prodType,
-      required final String prodId}) = _$AdvsDetailImpl;
+      required final BookUserProfile bookDetails}) = _$AdvsDetailImpl;
 
   factory _AdvsDetail.fromJson(Map<String, dynamic> json) =
       _$AdvsDetailImpl.fromJson;
 
   @override
-  List<dynamic> get comments;
+  List<dynamic>? get comments;
   @override
-  List<dynamic> get acceptedPrivateConv;
+  List<dynamic>? get acceptedPrivateConv;
   @override
-  List<dynamic> get privateComments;
+  List<dynamic>? get privateComments;
   @override
   @JsonKey(name: "_id")
   String get id;
@@ -342,11 +374,11 @@ abstract class _AdvsDetail implements AdvsDetail {
   @override
   String get description;
   @override
-  String get userId;
+  BasicUser get ownerDetail;
   @override
   String get prodType;
   @override
-  String get prodId;
+  BookUserProfile get bookDetails;
   @override
   @JsonKey(ignore: true)
   _$$AdvsDetailImplCopyWith<_$AdvsDetailImpl> get copyWith =>
