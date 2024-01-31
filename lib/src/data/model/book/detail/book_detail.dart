@@ -17,6 +17,7 @@ class BookDetail with _$BookDetail {
     required List<String?>? categories,
     required List<BasicUser?>? readByUsers,
     required List<String?>? commentDetails,
+    required bool isReadByUser,
     @Default(0) int rates,
     String? orginalName,
   }) = _BookDetail;

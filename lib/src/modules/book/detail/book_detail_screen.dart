@@ -4,13 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
+import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/modules/book/detail/bloc/book_bloc.dart';
+import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+enum BookDetailPopType {
+  readBook,
+  removeBook,
+}
 
 @RoutePage()
 class BookDetailScreen extends StatefulWidget {
   final String bookId;
-
   const BookDetailScreen({super.key, required this.bookId});
 
   @override
@@ -19,6 +25,8 @@ class BookDetailScreen extends StatefulWidget {
 
 class BookDetailScreenState extends State<BookDetailScreen>
     with TickerProviderStateMixin {
+  BookDetailPopType? bookDetailPopType;
+  bool? didIRead;
   late TabController controller;
   @override
   void initState() {
@@ -57,11 +65,20 @@ class BookDetailScreenState extends State<BookDetailScreen>
       );
     }
 
-    return BlocProvider(
-      create: (context) => BookBloc(widget.bookId)..add(BookStartEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BookBloc(widget.bookId)..add(BookStartEvent()),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(),
+        ),
+      ],
       child: BlocConsumer<BookBloc, BookState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is BookDetailData) {
+            didIRead = state.book.isReadByUser;
+          }
         },
         builder: (context, state) {
           if (state is BookDetailData) {
@@ -70,7 +87,44 @@ class BookDetailScreenState extends State<BookDetailScreen>
               body: SafeArea(
                 child: Column(
                   children: <Widget>[
-                    T10TopBar("Kitap Detay"),
+                    SafeArea(
+                      child: Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        color: appStore.appBarColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              icon: const Icon(Icons.arrow_back),
+                              color: appStore.iconColor,
+                              onPressed: () {
+                                AutoRouter.of(context).pop({
+                                  'bookDetailPopType': bookDetailPopType,
+                                  'book': BookUserProfile(
+                                    id: widget.bookId,
+                                    name: state.book.name,
+                                    imageUrl: state.book.imageUrl,
+                                  )
+                                });
+                              },
+                            ),
+                            Center(
+                              child: text(
+                                txt: "Kitap Detay",
+                                color: appStore.textPrimaryColor,
+                                fontWeight: FontWeight.bold,
+                                size: 16,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -114,11 +168,11 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                               ),
                                             )
                                             /*  text(
-                                              txt: state.book.name,
-                                              color: Colors.black,
-                                              size: 20,
-                                              textAlign: TextAlign.start,
-                                            ), */
+                                                  txt: state.book.name,
+                                                  color: Colors.black,
+                                                  size: 20,
+                                                  textAlign: TextAlign.start,
+                                                ), */
                                             ,
                                             text(
                                               txt: state.book.description ?? "",
@@ -169,9 +223,29 @@ class BookDetailScreenState extends State<BookDetailScreen>
                                           ),
                                         ),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: AddBookMark(isSelected: true),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: AddBookMark(
+                                            read: () {
+                                              BlocProvider.of<BookBloc>(context)
+                                                  .add(ReadBookEvent(
+                                                      bookId: widget.bookId));
+                                              setState(() {
+                                                bookDetailPopType =
+                                                    BookDetailPopType.readBook;
+                                              });
+                                            },
+                                            unread: () {
+                                              BlocProvider.of<BookBloc>(context)
+                                                  .add(RemoveReadBookEvent(
+                                                      bookId: widget.bookId));
+                                              setState(() {
+                                                bookDetailPopType =
+                                                    BookDetailPopType
+                                                        .removeBook;
+                                              });
+                                            },
+                                            isSelected: didIRead ?? false),
                                       ),
                                     ],
                                   ),
@@ -186,12 +260,14 @@ class BookDetailScreenState extends State<BookDetailScreen>
                               labelColor: Colors.blue,
                               tabs: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child:
                                       text(txt: "Yorumlar", color: Colors.grey),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 8),
                                   child: text(
                                       txt: "Okuyanlar", color: Colors.grey),
                                 ),
@@ -223,7 +299,14 @@ class BookDetailScreenState extends State<BookDetailScreen>
 
 class AddBookMark extends StatefulWidget {
   final bool isSelected;
-  const AddBookMark({super.key, required this.isSelected});
+  final void Function() read;
+  final void Function() unread;
+
+  const AddBookMark(
+      {super.key,
+      required this.isSelected,
+      required this.read,
+      required this.unread});
 
   @override
   State<AddBookMark> createState() => _AddBookMarkState();
@@ -274,11 +357,15 @@ class _AddBookMarkState extends State<AddBookMark> {
 
   void _toggle() {
     if (color == Colors.blue) {
+      widget.unread();
+
       setState(() {
         color = Colors.grey;
         iconData = Icons.bookmark_add_outlined;
       });
     } else {
+      widget.read();
+
       setState(() {
         color = Colors.blue;
         iconData = Icons.bookmark_added_sharp;
@@ -304,64 +391,4 @@ BoxDecoration boxDecoration(
     border: Border.all(color: color),
     borderRadius: BorderRadius.all(Radius.circular(radius)),
   );
-}
-
-// ignore: must_be_immutable
-class T10TopBar extends StatefulWidget {
-  var titleName;
-  final isDirect;
-
-  T10TopBar(var this.titleName, {super.key, this.isDirect = false});
-
-  @override
-  State<StatefulWidget> createState() {
-    return T10TopBarState(isDirect: isDirect);
-  }
-}
-
-class T10TopBarState extends State<T10TopBar> {
-  final isDirect;
-
-  T10TopBarState({this.isDirect = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        color: appStore.appBarColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              color: appStore.iconColor,
-              onPressed: () {
-                if (isDirect) {
-                  /*   ProKitLauncher().launch(context,
-                      isNewTask: true,
-                      pageRouteAnimation: PageRouteAnimation.Fade); */
-                } else {
-                  finish(context);
-                }
-              },
-            ),
-            Center(
-              child: text(
-                txt: widget.titleName,
-                color: appStore.textPrimaryColor,
-                fontWeight: FontWeight.bold,
-                size: 16,
-              ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

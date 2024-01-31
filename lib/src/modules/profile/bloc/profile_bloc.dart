@@ -15,6 +15,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileBloc() : super(ProfileInitial()) {
     on<ProfileEvent>(_start);
+    on<ReadBookProfile>(_readBook);
   }
 
   Future<FutureOr<void>> _start(
@@ -27,5 +28,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } catch (error, stack) {
       ErrorLogger.logError(error, stack);
     }
+  }
+
+  Future<FutureOr<void>> _readBook(
+      ReadBookProfile event, Emitter<ProfileState> emit) async {
+    emit(ProfileLoading());
+    User user = await userRepository.sessionUser();
+
+    emit(ProfileStartData(user: user));
   }
 }

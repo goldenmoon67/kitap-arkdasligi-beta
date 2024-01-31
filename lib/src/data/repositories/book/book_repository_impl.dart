@@ -10,4 +10,14 @@ class BookRepositoryImpl extends BookRepository {
   Future<BookDetail> bookDetail(String bookId) async {
     return await _client.getBookDetail(bookId);
   }
+
+  @override
+  Future<void> readBook(String bookId) async {
+    await _client.readBook(bookId);
+  }
+
+  @override
+  Future<void> removeReadBook(String bookId) async {
+    await _client.removeReadBook(bookId);
+  }
 }

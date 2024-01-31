@@ -35,6 +35,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CommentRoute.name: (routeData) {
+      final args = routeData.argsAs<CommentRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CommentScreen(
+          key: args.key,
+          commentType: args.commentType,
+          objectId: args.objectId,
+        ),
+      );
+    },
     CreateAccountRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -152,6 +163,49 @@ class BookDetailRouteArgs {
   @override
   String toString() {
     return 'BookDetailRouteArgs{key: $key, bookId: $bookId}';
+  }
+}
+
+/// generated route for
+/// [CommentScreen]
+class CommentRoute extends PageRouteInfo<CommentRouteArgs> {
+  CommentRoute({
+    Key? key,
+    required CommentType commentType,
+    required String objectId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CommentRoute.name,
+          args: CommentRouteArgs(
+            key: key,
+            commentType: commentType,
+            objectId: objectId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CommentRoute';
+
+  static const PageInfo<CommentRouteArgs> page =
+      PageInfo<CommentRouteArgs>(name);
+}
+
+class CommentRouteArgs {
+  const CommentRouteArgs({
+    this.key,
+    required this.commentType,
+    required this.objectId,
+  });
+
+  final Key? key;
+
+  final CommentType commentType;
+
+  final String objectId;
+
+  @override
+  String toString() {
+    return 'CommentRouteArgs{key: $key, commentType: $commentType, objectId: $objectId}';
   }
 }
 

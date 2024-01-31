@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
+import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/modules/advs/detail/bloc/advs_bloc.dart';
+import 'package:kitap_arkadasligi/src/modules/book/detail/book_detail_screen.dart';
+import 'package:kitap_arkadasligi/src/modules/commons/comment/comment_screen.dart';
+import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
@@ -20,6 +24,9 @@ class AdvsDetailScreen extends StatefulWidget {
 class AdvsDetailScreenState extends State<AdvsDetailScreen>
     with TickerProviderStateMixin {
   late TabController controller;
+  BookDetailPopType? bookDetailPopType;
+  BookUserProfile? popBook;
+
   @override
   void initState() {
     controller = TabController(length: 2, vsync: this);
@@ -70,7 +77,40 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
               body: SafeArea(
                 child: Column(
                   children: <Widget>[
-                    T10TopBar(""),
+                    SafeArea(
+                      child: Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        color: appStore.appBarColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              icon: const Icon(Icons.arrow_back),
+                              color: appStore.iconColor,
+                              onPressed: () {
+                                AutoRouter.of(context).pop({
+                                  'bookDetailPopType': bookDetailPopType,
+                                  'book': popBook
+                                });
+                              },
+                            ),
+                            Center(
+                              child: text(
+                                txt: "",
+                                color: appStore.textPrimaryColor,
+                                fontWeight: FontWeight.bold,
+                                size: 16,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -153,7 +193,21 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () async {
+                                          var result =
+                                              await AutoRouter.of(context)
+                                                  .push(BookDetailRoute(
+                                            bookId: state.advs.bookDetails.id,
+                                          ));
+                                          var object = result as Map;
+                                          setState(() {
+                                            bookDetailPopType =
+                                                result['bookDetailPopType']
+                                                    as BookDetailPopType;
+                                            popBook = result['book']
+                                                as BookUserProfile;
+                                          });
+                                        },
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -205,7 +259,11 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                AutoRouter.of(context).push(CommentRoute(
+                                    commentType: CommentType.private,
+                                    objectId: widget.advsId));
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -383,64 +441,4 @@ BoxDecoration boxDecoration(
     border: Border.all(color: color),
     borderRadius: BorderRadius.all(Radius.circular(radius)),
   );
-}
-
-// ignore: must_be_immutable
-class T10TopBar extends StatefulWidget {
-  var titleName;
-  final isDirect;
-
-  T10TopBar(var this.titleName, {super.key, this.isDirect = false});
-
-  @override
-  State<StatefulWidget> createState() {
-    return T10TopBarState(isDirect: isDirect);
-  }
-}
-
-class T10TopBarState extends State<T10TopBar> {
-  final isDirect;
-
-  T10TopBarState({this.isDirect = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        color: appStore.appBarColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              color: appStore.iconColor,
-              onPressed: () {
-                if (isDirect) {
-                  /*   ProKitLauncher().launch(context,
-                      isNewTask: true,
-                      pageRouteAnimation: PageRouteAnimation.Fade); */
-                } else {
-                  finish(context);
-                }
-              },
-            ),
-            Center(
-              child: text(
-                txt: widget.titleName,
-                color: appStore.textPrimaryColor,
-                fontWeight: FontWeight.bold,
-                size: 16,
-              ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

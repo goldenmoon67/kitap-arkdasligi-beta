@@ -30,6 +30,7 @@ mixin _$BookDetail {
   List<String?>? get categories => throw _privateConstructorUsedError;
   List<BasicUser?>? get readByUsers => throw _privateConstructorUsedError;
   List<String?>? get commentDetails => throw _privateConstructorUsedError;
+  bool get isReadByUser => throw _privateConstructorUsedError;
   int get rates => throw _privateConstructorUsedError;
   String? get orginalName => throw _privateConstructorUsedError;
 
@@ -55,6 +56,7 @@ abstract class $BookDetailCopyWith<$Res> {
       List<String?>? categories,
       List<BasicUser?>? readByUsers,
       List<String?>? commentDetails,
+      bool isReadByUser,
       int rates,
       String? orginalName});
 
@@ -83,6 +85,7 @@ class _$BookDetailCopyWithImpl<$Res, $Val extends BookDetail>
     Object? categories = freezed,
     Object? readByUsers = freezed,
     Object? commentDetails = freezed,
+    Object? isReadByUser = null,
     Object? rates = null,
     Object? orginalName = freezed,
   }) {
@@ -123,6 +126,10 @@ class _$BookDetailCopyWithImpl<$Res, $Val extends BookDetail>
           ? _value.commentDetails
           : commentDetails // ignore: cast_nullable_to_non_nullable
               as List<String?>?,
+      isReadByUser: null == isReadByUser
+          ? _value.isReadByUser
+          : isReadByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       rates: null == rates
           ? _value.rates
           : rates // ignore: cast_nullable_to_non_nullable
@@ -161,6 +168,7 @@ abstract class _$$BookDetailImplCopyWith<$Res>
       List<String?>? categories,
       List<BasicUser?>? readByUsers,
       List<String?>? commentDetails,
+      bool isReadByUser,
       int rates,
       String? orginalName});
 
@@ -188,6 +196,7 @@ class __$$BookDetailImplCopyWithImpl<$Res>
     Object? categories = freezed,
     Object? readByUsers = freezed,
     Object? commentDetails = freezed,
+    Object? isReadByUser = null,
     Object? rates = null,
     Object? orginalName = freezed,
   }) {
@@ -228,6 +237,10 @@ class __$$BookDetailImplCopyWithImpl<$Res>
           ? _value._commentDetails
           : commentDetails // ignore: cast_nullable_to_non_nullable
               as List<String?>?,
+      isReadByUser: null == isReadByUser
+          ? _value.isReadByUser
+          : isReadByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       rates: null == rates
           ? _value.rates
           : rates // ignore: cast_nullable_to_non_nullable
@@ -253,6 +266,7 @@ class _$BookDetailImpl implements _BookDetail {
       required final List<String?>? categories,
       required final List<BasicUser?>? readByUsers,
       required final List<String?>? commentDetails,
+      required this.isReadByUser,
       this.rates = 0,
       this.orginalName})
       : _categories = categories,
@@ -306,6 +320,8 @@ class _$BookDetailImpl implements _BookDetail {
   }
 
   @override
+  final bool isReadByUser;
+  @override
   @JsonKey()
   final int rates;
   @override
@@ -313,7 +329,7 @@ class _$BookDetailImpl implements _BookDetail {
 
   @override
   String toString() {
-    return 'BookDetail(id: $id, name: $name, description: $description, imageUrl: $imageUrl, author: $author, pageCount: $pageCount, categories: $categories, readByUsers: $readByUsers, commentDetails: $commentDetails, rates: $rates, orginalName: $orginalName)';
+    return 'BookDetail(id: $id, name: $name, description: $description, imageUrl: $imageUrl, author: $author, pageCount: $pageCount, categories: $categories, readByUsers: $readByUsers, commentDetails: $commentDetails, isReadByUser: $isReadByUser, rates: $rates, orginalName: $orginalName)';
   }
 
   @override
@@ -336,6 +352,8 @@ class _$BookDetailImpl implements _BookDetail {
                 .equals(other._readByUsers, _readByUsers) &&
             const DeepCollectionEquality()
                 .equals(other._commentDetails, _commentDetails) &&
+            (identical(other.isReadByUser, isReadByUser) ||
+                other.isReadByUser == isReadByUser) &&
             (identical(other.rates, rates) || other.rates == rates) &&
             (identical(other.orginalName, orginalName) ||
                 other.orginalName == orginalName));
@@ -354,6 +372,7 @@ class _$BookDetailImpl implements _BookDetail {
       const DeepCollectionEquality().hash(_categories),
       const DeepCollectionEquality().hash(_readByUsers),
       const DeepCollectionEquality().hash(_commentDetails),
+      isReadByUser,
       rates,
       orginalName);
 
@@ -382,6 +401,7 @@ abstract class _BookDetail implements BookDetail {
       required final List<String?>? categories,
       required final List<BasicUser?>? readByUsers,
       required final List<String?>? commentDetails,
+      required final bool isReadByUser,
       final int rates,
       final String? orginalName}) = _$BookDetailImpl;
 
@@ -407,6 +427,8 @@ abstract class _BookDetail implements BookDetail {
   List<BasicUser?>? get readByUsers;
   @override
   List<String?>? get commentDetails;
+  @override
+  bool get isReadByUser;
   @override
   int get rates;
   @override

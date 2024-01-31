@@ -24,6 +24,7 @@ _$BookDetailImpl _$$BookDetailImplFromJson(Map<String, dynamic> json) =>
       commentDetails: (json['commentDetails'] as List<dynamic>?)
           ?.map((e) => e as String?)
           .toList(),
+      isReadByUser: json['isReadByUser'] as bool,
       rates: json['rates'] as int? ?? 0,
       orginalName: json['orginalName'] as String?,
     );
@@ -39,6 +40,7 @@ Map<String, dynamic> _$$BookDetailImplToJson(_$BookDetailImpl instance) =>
       'categories': instance.categories,
       'readByUsers': instance.readByUsers,
       'commentDetails': instance.commentDetails,
+      'isReadByUser': instance.isReadByUser,
       'rates': instance.rates,
       'orginalName': instance.orginalName,
     };

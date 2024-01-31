@@ -20,6 +20,12 @@ abstract class RestClient {
   @GET("books/{id}")
   Future<BookDetail> getBookDetail(@Path() String id);
 
+  @PUT("books/{id}/read")
+  Future<void> readBook(@Path() String id);
+
+  @PUT("books/{id}/unread")
+  Future<void> removeReadBook(@Path() String id);
+
   @GET("advs/{id}")
   Future<AdvsDetail> getAdvsDetail(@Path() String id);
 }

@@ -9,6 +9,8 @@ import 'package:kitap_arkadasligi/src/data/model/advs/basic/advs_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/data/model/comments.dart/comments_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/user.dart';
+import 'package:kitap_arkadasligi/src/modules/book/detail/book_detail_screen.dart'
+    as bookDetail;
 import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
 import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -26,6 +28,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
+  List<BookUserProfile> books = [];
   User? user;
 
   @override
@@ -47,6 +50,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             EasyLoading.dismiss(animation: false);
           }
           if (state is ProfileStartData) {
+            books = [...state.user.books];
             user = state.user;
           }
         },
@@ -164,7 +168,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           horizontal: 12,
                         ),
                         child: GridView.builder(
-                          itemCount: state.user.books.length,
+                          itemCount: books.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
@@ -173,7 +177,18 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   mainAxisExtent: 250),
                           itemBuilder: (context, index) {
                             return ProfileBookItem(
-                              book: state.user.books[index],
+                              readBook: (book) {
+                                setState(() {
+                                  books.add(book);
+                                });
+                              },
+                              removeBook: (book) {
+                                setState(() {
+                                  books.removeWhere(
+                                      (element) => element.id == book.id);
+                                });
+                              },
+                              book: books[index],
                             );
                           },
                         ),
@@ -190,6 +205,17 @@ class ProfileScreenState extends State<ProfileScreen> {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ProfileAdvsItem(
+                                  readBook: (book) {
+                                    setState(() {
+                                      books.add(book);
+                                    });
+                                  },
+                                  removeBook: (book) {
+                                    setState(() {
+                                      books.removeWhere(
+                                          (element) => element.id == book.id);
+                                    });
+                                  },
                                   advs: state.user.advertisements[index]),
                             );
                           },
@@ -258,13 +284,33 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
 class ProfileAdvsItem extends StatelessWidget {
   final AdvsBasic advs;
-  const ProfileAdvsItem({super.key, required this.advs});
+  final void Function(BookUserProfile) readBook;
+  final void Function(BookUserProfile) removeBook;
+  const ProfileAdvsItem(
+      {super.key,
+      required this.advs,
+      required this.readBook,
+      required this.removeBook});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        AutoRouter.of(context).push(AdvsDetailRoute(advsId: advs.id));
+      onTap: () async {
+        var result =
+            await AutoRouter.of(context).push(AdvsDetailRoute(advsId: advs.id));
+        var object = result as Map;
+        bookDetail.BookDetailPopType bookDetailPopType =
+            result["bookDetailPopType"] as bookDetail.BookDetailPopType;
+        debugPrint("55555555555555555555555");
+        var bookId = result["book"] as BookUserProfile;
+        debugPrint(result.toString());
+
+        if (bookDetailPopType == bookDetail.BookDetailPopType.readBook) {
+          readBook(bookId);
+        } else if (bookDetailPopType ==
+            bookDetail.BookDetailPopType.removeBook) {
+          removeBook(bookId);
+        }
       },
       child: Container(
         height: 200,
@@ -337,8 +383,14 @@ class ProfileAdvsItem extends StatelessWidget {
 }
 
 class ProfileBookItem extends StatelessWidget {
+  final void Function(BookUserProfile) readBook;
+  final void Function(BookUserProfile) removeBook;
   final BookUserProfile book;
-  const ProfileBookItem({super.key, required this.book});
+  const ProfileBookItem(
+      {super.key,
+      required this.book,
+      required this.readBook,
+      required this.removeBook});
 
   @override
   Widget build(BuildContext context) {
@@ -384,8 +436,24 @@ class ProfileBookItem extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {
-                AutoRouter.of(context).push(BookDetailRoute(bookId: book.id));
+              onTap: () async {
+                var result = await AutoRouter.of(context).push(BookDetailRoute(
+                  bookId: book.id,
+                ));
+                var object = result as Map;
+                bookDetail.BookDetailPopType bookDetailPopType =
+                    result["bookDetailPopType"] as bookDetail.BookDetailPopType;
+                debugPrint("55555555555555555555555");
+                var bookId = result["book"] as BookUserProfile;
+                debugPrint(result.toString());
+
+                if (bookDetailPopType ==
+                    bookDetail.BookDetailPopType.readBook) {
+                  readBook(bookId);
+                } else if (bookDetailPopType ==
+                    bookDetail.BookDetailPopType.removeBook) {
+                  removeBook(bookId);
+                }
               },
             ),
           )

@@ -15,12 +15,32 @@ class BookBloc extends Bloc<BookEvent, BookState> {
 
   BookBloc(this.bookId) : super(BookInitial()) {
     on<BookStartEvent>(_start);
+    on<ReadBookEvent>(_read);
+    on<RemoveReadBookEvent>(_unRead);
   }
 
   Future<FutureOr<void>> _start(
       BookStartEvent event, Emitter<BookState> emit) async {
-    emit(BookLoading());
-    var result = await bookRepository.bookDetail(bookId);
-    emit(BookDetailData(book: result));
+    try {
+      emit(BookLoading());
+      var result = await bookRepository.bookDetail(bookId);
+      emit(BookDetailData(book: result));
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<FutureOr<void>> _read(
+      ReadBookEvent event, Emitter<BookState> emit) async {
+    await bookRepository.readBook(bookId);
+  }
+
+  Future<FutureOr<void>> _unRead(
+      RemoveReadBookEvent event, Emitter<BookState> emit) async {
+    try {
+      await bookRepository.removeReadBook(bookId);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

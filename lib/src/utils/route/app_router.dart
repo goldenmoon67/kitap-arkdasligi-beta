@@ -5,6 +5,7 @@ import 'package:kitap_arkadasligi/src/modules/auth/create_account/create_account
 import 'package:kitap_arkadasligi/src/modules/auth/login/login_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/register_mail/register_mail_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/book/detail/book_detail_screen.dart';
+import 'package:kitap_arkadasligi/src/modules/commons/comment/comment_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/home/home_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/dashboard/dashboard_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/profile_screen.dart';
@@ -30,6 +31,7 @@ class AppRouter extends _$AppRouter {
     ]),
     AutoRoute(page: BookDetailRoute.page),
     AutoRoute(page: AdvsDetailRoute.page),
+    AutoRoute(page: CommentRoute.page),
   ];
 }
 
