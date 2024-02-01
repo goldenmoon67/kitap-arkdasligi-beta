@@ -146,7 +146,7 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                                     ),
                                   ),
                                   text(
-                                    txt: state.advs.description ?? "",
+                                    txt: state.advs.description,
                                     color: Colors.grey.shade700,
                                     size: 14,
                                   ),

@@ -73,6 +73,36 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<PagingModel<BookUserProfile>> getBookList() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PagingModel<BookUserProfile>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'books',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PagingModel<BookUserProfile>.fromJson(
+      _result.data!,
+      (json) => BookUserProfile.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
   Future<BookDetail> getBookDetail(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

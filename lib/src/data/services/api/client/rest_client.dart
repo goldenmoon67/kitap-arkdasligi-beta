@@ -3,6 +3,8 @@ import 'package:kitap_arkadasligi/src/data/model/advs/detail/advs_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/create/login_create_model.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/response/login_response.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/detail/book_detail.dart';
+import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
+import 'package:kitap_arkadasligi/src/data/model/common/pagination/pagination.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/user.dart';
 import 'package:retrofit/http.dart';
 
@@ -16,6 +18,9 @@ abstract class RestClient {
 
   @GET("session-user")
   Future<User> geSessiontUser();
+
+  @GET("books")
+  Future<PagingModel<BookUserProfile>> getBookList();
 
   @GET("books/{id}")
   Future<BookDetail> getBookDetail(@Path() String id);
