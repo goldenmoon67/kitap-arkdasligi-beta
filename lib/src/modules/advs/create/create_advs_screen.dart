@@ -25,7 +25,7 @@ class CreateAdvsScreenState extends State<CreateAdvsScreen>
   BookDetailPopType? bookDetailPopType;
   BookUserProfile? popBook;
   BookUserProfile? _selectedBook;
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   List<BookUserProfile>? books = [];
 
   @override

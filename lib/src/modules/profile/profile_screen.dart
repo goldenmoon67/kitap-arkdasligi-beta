@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +66,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       (BuildContext context, bool innerBoxIsScrolled) {
                     return <Widget>[
                       SliverAppBar(
+                        automaticallyImplyLeading: false,
                         expandedHeight: 350,
                         floating: false,
                         pinned: true,
@@ -72,33 +75,15 @@ class ProfileScreenState extends State<ProfileScreen> {
                             ? Colors.blue.shade200
                             : Colors.white,
                         actionsIconTheme: const IconThemeData(opacity: 0.0),
-                        leading: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: white,
-                            ),
-                            onPressed: () {
-                              if (widget.isDirect) {
-                                /*    ProKitLauncher().launch(context,
-                                      isNewTask: true,
-                                      pageRouteAnimation: PageRouteAnimation.Fade); */
-                              } else {
-                                finish(context);
-                              }
-                            }),
                         title: SizedBox(
-                          height: 60,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text("Profile",
+                            height: 60,
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 20),
+                              child: Text("Profile",
                                   maxLines: 2,
                                   style: boldTextStyle(
-                                      size: 22, color: Colors.white))
-                            ],
-                          ),
-                        ),
+                                      size: 22, color: Colors.white)),
+                            )),
                         flexibleSpace: FlexibleSpaceBar(
                           background: Container(
                             color: context.scaffoldBackgroundColor,
@@ -394,6 +379,7 @@ class ProfileBookItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var rng = Random();
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Stack(
@@ -402,7 +388,8 @@ class ProfileBookItem extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: CachedNetworkImage(
-              imageUrl: book.imageUrl ?? "https://picsum.photos/200/300",
+              imageUrl: book.imageUrl ??
+                  "https://picsum.photos/${rng.nextInt(100) + 100}/300",
               fit: BoxFit.cover,
               errorWidget: (context, url, error) {
                 return Container(
