@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kitap_arkadasligi/src/data/model/book/detail/book_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/data/model/common/pagination/pagination.dart';
-import 'package:kitap_arkadasligi/src/domain/managers/user_manager.dart';
 import 'package:kitap_arkadasligi/src/domain/repositories/book/book_repository.dart';
 import 'package:kitap_arkadasligi/src/utils/di/getit_register.dart';
 import 'package:kitap_arkadasligi/src/utils/logger/error_logger.dart';

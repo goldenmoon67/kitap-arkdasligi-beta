@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:kitap_arkadasligi/src/modules/advs/create/create_advs_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/advs/detail/advs_detail_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/create_account/create_account_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/auth/login/login_screen.dart';
@@ -31,6 +32,7 @@ class AppRouter extends _$AppRouter {
     ]),
     AutoRoute(page: BookDetailRoute.page),
     AutoRoute(page: AdvsDetailRoute.page),
+    AutoRoute(page: CreateAdvsRoute.page),
     AutoRoute(page: CommentRoute.page),
   ];
 }

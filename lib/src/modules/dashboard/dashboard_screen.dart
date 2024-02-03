@@ -5,6 +5,7 @@ import 'package:kitap_arkadasligi/src/modules/home/home_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/dashboard/bloc/dashboard_bloc.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/profile_screen.dart';
 import 'package:kitap_arkadasligi/src/utils/navigation_bar/bottom_bar.dart';
+import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 
 import 'package:nb_utils/nb_utils.dart';
 
@@ -22,6 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const HomeScreen(),
     const ProfileScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -31,16 +33,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
         builder: (context, state) {
           return Scaffold(
             body: _pages.elementAt(_selectedIndex),
+            floatingActionButton: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const CreateAdvsRoute());
+                },
+                backgroundColor: Colors.blueAccent,
+                child: const Icon(Icons.add),
+              ),
+            ),
             bottomNavigationBar: BubbleBottomBar(
               opacity: .4,
               currentIndex: _selectedIndex,
-              elevation: 0,
+              elevation: 4,
               onTap: (index) {
                 setState(() {
                   _selectedIndex = index;
                 });
               },
-              hasNotch: true,
+              hasNotch: false, // Notch varsa FAB için yer aç
               hasInk: true,
               inkColor: Colors.blueAccent,
               items: <BubbleBottomBarItem>[
@@ -53,10 +65,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
-}
 
-BubbleBottomBarItem tab(IconData iconData, String tabName) {
-  return BubbleBottomBarItem(
+  BubbleBottomBarItem tab(IconData iconData, String tabName) {
+    return BubbleBottomBarItem(
       backgroundColor: Colors.blueAccent,
       icon: Icon(
         iconData,
@@ -76,5 +87,7 @@ BubbleBottomBarItem tab(IconData iconData, String tabName) {
             color: Colors.blueAccent,
             weight: FontWeight.bold),
         maxLines: 1,
-      ));
+      ),
+    );
+  }
 }

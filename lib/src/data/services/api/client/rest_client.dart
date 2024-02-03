@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:kitap_arkadasligi/src/data/model/advs/create/create_advs_request.dart';
+import 'package:kitap_arkadasligi/src/data/model/advs/create/create_advs_response.dart';
 import 'package:kitap_arkadasligi/src/data/model/advs/detail/advs_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/create/login_create_model.dart';
 import 'package:kitap_arkadasligi/src/data/model/auth/login/response/login_response.dart';
@@ -33,4 +35,7 @@ abstract class RestClient {
 
   @GET("advs/{id}")
   Future<AdvsDetail> getAdvsDetail(@Path() String id);
+
+  @POST("advs")
+  Future<CreateAdvsResponse> craeteAdvs(@Body() CreateAdvsRequest request);
 }

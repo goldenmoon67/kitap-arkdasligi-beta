@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:kitap_arkadasligi/src/commons/app_component.dart';
-import 'package:kitap_arkadasligi/src/data/model/book/detail/book_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/modules/home/bloc/home_bloc.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/profile_screen.dart';

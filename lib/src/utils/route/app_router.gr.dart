@@ -52,6 +52,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateAccountScreen(),
       );
     },
+    CreateAdvsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateAdvsScreen(),
+      );
+    },
     DashboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -219,6 +225,20 @@ class CreateAccountRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CreateAccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CreateAdvsScreen]
+class CreateAdvsRoute extends PageRouteInfo<void> {
+  const CreateAdvsRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateAdvsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateAdvsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
