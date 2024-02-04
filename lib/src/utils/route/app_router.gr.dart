@@ -43,6 +43,7 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           commentType: args.commentType,
           objectId: args.objectId,
+          sendButton: args.sendButton,
         ),
       );
     },
@@ -179,6 +180,7 @@ class CommentRoute extends PageRouteInfo<CommentRouteArgs> {
     Key? key,
     required CommentType commentType,
     required String objectId,
+    required void Function(String) sendButton,
     List<PageRouteInfo>? children,
   }) : super(
           CommentRoute.name,
@@ -186,6 +188,7 @@ class CommentRoute extends PageRouteInfo<CommentRouteArgs> {
             key: key,
             commentType: commentType,
             objectId: objectId,
+            sendButton: sendButton,
           ),
           initialChildren: children,
         );
@@ -201,6 +204,7 @@ class CommentRouteArgs {
     this.key,
     required this.commentType,
     required this.objectId,
+    required this.sendButton,
   });
 
   final Key? key;
@@ -209,9 +213,11 @@ class CommentRouteArgs {
 
   final String objectId;
 
+  final void Function(String) sendButton;
+
   @override
   String toString() {
-    return 'CommentRouteArgs{key: $key, commentType: $commentType, objectId: $objectId}';
+    return 'CommentRouteArgs{key: $key, commentType: $commentType, objectId: $objectId, sendButton: $sendButton}';
   }
 }
 

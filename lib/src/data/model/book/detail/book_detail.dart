@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitap_arkadasligi/src/data/model/author/author.dart';
-import 'package:kitap_arkadasligi/src/data/model/comments.dart/comments_basic.dart';
+import 'package:kitap_arkadasligi/src/data/model/comments/comments_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/basic_user.dart';
 
 part 'book_detail.freezed.dart';

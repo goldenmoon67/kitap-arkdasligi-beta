@@ -16,3 +16,10 @@ class RemoveReadBookEvent extends BookEvent {
 
   RemoveReadBookEvent({required this.bookId});
 }
+
+class CommentBookEvent extends BookEvent {
+  final String bookId;
+  final String text;
+
+  CommentBookEvent(this.text, {required this.bookId});
+}

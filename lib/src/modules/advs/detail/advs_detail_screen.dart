@@ -260,9 +260,13 @@ class AdvsDetailScreenState extends State<AdvsDetailScreen>
                             ),
                             InkWell(
                               onTap: () {
-                                AutoRouter.of(context).push(CommentRoute(
+                                AutoRouter.of(context).push(
+                                  CommentRoute(
                                     commentType: CommentType.private,
-                                    objectId: widget.advsId));
+                                    objectId: widget.advsId,
+                                    sendButton: (text) {},
+                                  ),
+                                );
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),

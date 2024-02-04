@@ -12,3 +12,7 @@ final class BookDetailData extends BookState {
 
   BookDetailData({required this.book});
 }
+
+final class BookSucces extends BookState {
+  BookSucces();
+}

@@ -79,6 +79,10 @@ class BookDetailScreenState extends State<BookDetailScreen>
       ],
       child: BlocConsumer<BookBloc, BookState>(
         listener: (context, state) {
+          if (state is BookSucces) {
+            AutoRouter.of(context).setRoot(const DashboardRoute());
+            AutoRouter.of(context).push(BookDetailRoute(bookId: widget.bookId));
+          }
           if (state is BookDetailData) {
             didIRead = state.book.isReadByUser;
             comments.add(
@@ -86,9 +90,19 @@ class BookDetailScreenState extends State<BookDetailScreen>
                 height: 60,
                 child: InkWell(
                   onTap: () {
-                    AutoRouter.of(context).push(CommentRoute(
+                    AutoRouter.of(context).push(
+                      CommentRoute(
                         commentType: CommentType.public,
-                        objectId: widget.bookId));
+                        objectId: widget.bookId,
+                        sendButton: (text) {
+                          BlocProvider.of<BookBloc>(context)
+                              .add(CommentBookEvent(
+                            text,
+                            bookId: widget.bookId,
+                          ));
+                        },
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

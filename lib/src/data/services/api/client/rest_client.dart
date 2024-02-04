@@ -7,6 +7,7 @@ import 'package:kitap_arkadasligi/src/data/model/auth/login/create/login_create_
 import 'package:kitap_arkadasligi/src/data/model/auth/login/response/login_response.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/detail/book_detail.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
+import 'package:kitap_arkadasligi/src/data/model/comments/request/comment_request.dart';
 import 'package:kitap_arkadasligi/src/data/model/common/pagination/pagination.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/user.dart';
 import 'package:retrofit/http.dart';
@@ -33,6 +34,9 @@ abstract class RestClient {
 
   @PUT("books/{id}/unread")
   Future<void> removeReadBook(@Path() String id);
+
+  @PUT("books/{id}/comment")
+  Future<void> commentBook(@Path() String id, @Body() CommentRequest request);
 
   @GET("advs/{id}")
   Future<AdvsDetail> getAdvsDetail(@Path() String id);

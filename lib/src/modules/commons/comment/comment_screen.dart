@@ -18,20 +18,22 @@ enum CommentObjectType {
 class CommentScreen extends StatefulWidget {
   final CommentType commentType;
   final String objectId;
-
+  final void Function(String text) sendButton;
   const CommentScreen(
-      {super.key, required this.commentType, required this.objectId});
+      {super.key,
+      required this.commentType,
+      required this.objectId,
+      required this.sendButton});
 
   @override
   CommentScreenState createState() => CommentScreenState();
 }
 
-class CommentScreenState extends State<CommentScreen>
-    with TickerProviderStateMixin {
-  late TabController controller;
+class CommentScreenState extends State<CommentScreen> {
+  late TextEditingController controller;
   @override
   void initState() {
-    controller = TabController(length: 2, vsync: this);
+    controller = TextEditingController();
     super.initState();
   }
 
@@ -77,6 +79,7 @@ class CommentScreenState extends State<CommentScreen>
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                controller: controller,
                 maxLines: 14,
                 decoration: InputDecoration(
                   hintText: widget.commentType == CommentType.private
@@ -99,7 +102,7 @@ class CommentScreenState extends State<CommentScreen>
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            // Butona basıldığında yapılacak işlem
+            widget.sendButton(controller.text);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue, // Buton rengi

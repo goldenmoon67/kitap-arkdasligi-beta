@@ -17,12 +17,12 @@ class BookBloc extends Bloc<BookEvent, BookState> {
     on<BookStartEvent>(_start);
     on<ReadBookEvent>(_read);
     on<RemoveReadBookEvent>(_unRead);
+    on<CommentBookEvent>(_comment);
   }
 
   Future<FutureOr<void>> _start(
       BookStartEvent event, Emitter<BookState> emit) async {
     try {
-      emit(BookLoading());
       var result = await bookRepository.bookDetail(bookId);
       emit(BookDetailData(book: result));
     } catch (e) {
@@ -39,6 +39,16 @@ class BookBloc extends Bloc<BookEvent, BookState> {
       RemoveReadBookEvent event, Emitter<BookState> emit) async {
     try {
       await bookRepository.removeReadBook(bookId);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<FutureOr<void>> _comment(
+      CommentBookEvent event, Emitter<BookState> emit) async {
+    try {
+      await bookRepository.commentAbook(event.bookId, event.text);
+      emit(BookSucces());
     } catch (e) {
       debugPrint(e.toString());
     }

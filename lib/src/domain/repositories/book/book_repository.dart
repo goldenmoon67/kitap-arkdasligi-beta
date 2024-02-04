@@ -7,4 +7,5 @@ abstract class BookRepository {
   Future<void> readBook(String bookId);
   Future<void> removeReadBook(String bookId);
   Future<PagingModel<BookUserProfile>> getBooks();
+  Future<void> commentAbook(String id, String text);
 }

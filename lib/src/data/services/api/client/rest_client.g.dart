@@ -178,6 +178,33 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<void> commentBook(
+    String id,
+    CommentRequest request,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'books/${id}/comment',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
   Future<AdvsDetail> getAdvsDetail(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
