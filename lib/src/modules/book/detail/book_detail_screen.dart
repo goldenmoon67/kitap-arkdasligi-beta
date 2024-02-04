@@ -6,7 +6,9 @@ import 'package:kitap_arkadasligi/main.dart';
 import 'package:kitap_arkadasligi/src/commons/widgets.dart';
 import 'package:kitap_arkadasligi/src/data/model/book/user_profile/book_user_profile.dart';
 import 'package:kitap_arkadasligi/src/modules/book/detail/bloc/book_bloc.dart';
+import 'package:kitap_arkadasligi/src/modules/commons/comment/comment_screen.dart';
 import 'package:kitap_arkadasligi/src/modules/profile/bloc/profile_bloc.dart';
+import 'package:kitap_arkadasligi/src/utils/route/app_router.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 enum BookDetailPopType {
@@ -28,6 +30,7 @@ class BookDetailScreenState extends State<BookDetailScreen>
   BookDetailPopType? bookDetailPopType;
   bool? didIRead;
   late TabController controller;
+  List<Widget> comments = [];
   @override
   void initState() {
     controller = TabController(length: 2, vsync: this);
@@ -78,6 +81,122 @@ class BookDetailScreenState extends State<BookDetailScreen>
         listener: (context, state) {
           if (state is BookDetailData) {
             didIRead = state.book.isReadByUser;
+            comments.add(
+              SizedBox(
+                height: 60,
+                child: InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).push(CommentRoute(
+                        commentType: CommentType.public,
+                        objectId: widget.bookId));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "Yorum Ekle",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+            if (state.book.commentDetails != null &&
+                state.book.commentDetails!.isNotEmpty) {
+              for (var element in state.book.commentDetails!) {
+                comments.add(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: boxDecoration(
+                        radius: 10,
+                        showShadow: true,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        height: 50,
+                                        width: 50,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          clipBehavior: Clip.hardEdge,
+                                          child: CachedNetworkImage(
+                                            imageUrl: element!
+                                                    .ownerDetails!.imageUrl ??
+                                                "https://picsum.photos/50/50",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      text(
+                                        txt: element!.ownerDetails!.name,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(element!.text),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+            }
           }
         },
         builder: (context, state) {
@@ -277,7 +396,12 @@ class BookDetailScreenState extends State<BookDetailScreen>
                               height: MediaQuery.of(context).size.height,
                               child: TabBarView(
                                 controller: controller,
-                                children: const [Text("data"), Text("545")],
+                                children: [
+                                  Column(
+                                    children: comments,
+                                  ),
+                                  Text("545")
+                                ],
                               ),
                             ),
                           ],

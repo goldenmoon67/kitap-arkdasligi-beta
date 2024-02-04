@@ -22,7 +22,9 @@ _$BookDetailImpl _$$BookDetailImplFromJson(Map<String, dynamic> json) =>
               e == null ? null : BasicUser.fromJson(e as Map<String, dynamic>))
           .toList(),
       commentDetails: (json['commentDetails'] as List<dynamic>?)
-          ?.map((e) => e as String?)
+          ?.map((e) => e == null
+              ? null
+              : CommentBasic.fromJson(e as Map<String, dynamic>))
           .toList(),
       isReadByUser: json['isReadByUser'] as bool,
       rates: json['rates'] as int? ?? 0,

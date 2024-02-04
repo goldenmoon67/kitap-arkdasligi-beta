@@ -24,8 +24,9 @@ mixin _$CommentBasic {
   String get text => throw _privateConstructorUsedError;
   String get prodType => throw _privateConstructorUsedError;
   String get prodId => throw _privateConstructorUsedError;
-  String get ownerId => throw _privateConstructorUsedError;
-  BookUserProfile get relatedBook => throw _privateConstructorUsedError;
+  String? get ownerId => throw _privateConstructorUsedError;
+  BookUserProfile? get relatedBook => throw _privateConstructorUsedError;
+  BasicUser? get ownerDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,10 +45,12 @@ abstract class $CommentBasicCopyWith<$Res> {
       String text,
       String prodType,
       String prodId,
-      String ownerId,
-      BookUserProfile relatedBook});
+      String? ownerId,
+      BookUserProfile? relatedBook,
+      BasicUser? ownerDetails});
 
-  $BookUserProfileCopyWith<$Res> get relatedBook;
+  $BookUserProfileCopyWith<$Res>? get relatedBook;
+  $BasicUserCopyWith<$Res>? get ownerDetails;
 }
 
 /// @nodoc
@@ -67,8 +70,9 @@ class _$CommentBasicCopyWithImpl<$Res, $Val extends CommentBasic>
     Object? text = null,
     Object? prodType = null,
     Object? prodId = null,
-    Object? ownerId = null,
-    Object? relatedBook = null,
+    Object? ownerId = freezed,
+    Object? relatedBook = freezed,
+    Object? ownerDetails = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,22 +91,42 @@ class _$CommentBasicCopyWithImpl<$Res, $Val extends CommentBasic>
           ? _value.prodId
           : prodId // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      relatedBook: null == relatedBook
+              as String?,
+      relatedBook: freezed == relatedBook
           ? _value.relatedBook
           : relatedBook // ignore: cast_nullable_to_non_nullable
-              as BookUserProfile,
+              as BookUserProfile?,
+      ownerDetails: freezed == ownerDetails
+          ? _value.ownerDetails
+          : ownerDetails // ignore: cast_nullable_to_non_nullable
+              as BasicUser?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BookUserProfileCopyWith<$Res> get relatedBook {
-    return $BookUserProfileCopyWith<$Res>(_value.relatedBook, (value) {
+  $BookUserProfileCopyWith<$Res>? get relatedBook {
+    if (_value.relatedBook == null) {
+      return null;
+    }
+
+    return $BookUserProfileCopyWith<$Res>(_value.relatedBook!, (value) {
       return _then(_value.copyWith(relatedBook: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasicUserCopyWith<$Res>? get ownerDetails {
+    if (_value.ownerDetails == null) {
+      return null;
+    }
+
+    return $BasicUserCopyWith<$Res>(_value.ownerDetails!, (value) {
+      return _then(_value.copyWith(ownerDetails: value) as $Val);
     });
   }
 }
@@ -120,11 +144,14 @@ abstract class _$$CommentBasicImplCopyWith<$Res>
       String text,
       String prodType,
       String prodId,
-      String ownerId,
-      BookUserProfile relatedBook});
+      String? ownerId,
+      BookUserProfile? relatedBook,
+      BasicUser? ownerDetails});
 
   @override
-  $BookUserProfileCopyWith<$Res> get relatedBook;
+  $BookUserProfileCopyWith<$Res>? get relatedBook;
+  @override
+  $BasicUserCopyWith<$Res>? get ownerDetails;
 }
 
 /// @nodoc
@@ -142,8 +169,9 @@ class __$$CommentBasicImplCopyWithImpl<$Res>
     Object? text = null,
     Object? prodType = null,
     Object? prodId = null,
-    Object? ownerId = null,
-    Object? relatedBook = null,
+    Object? ownerId = freezed,
+    Object? relatedBook = freezed,
+    Object? ownerDetails = freezed,
   }) {
     return _then(_$CommentBasicImpl(
       id: null == id
@@ -162,14 +190,18 @@ class __$$CommentBasicImplCopyWithImpl<$Res>
           ? _value.prodId
           : prodId // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      relatedBook: null == relatedBook
+              as String?,
+      relatedBook: freezed == relatedBook
           ? _value.relatedBook
           : relatedBook // ignore: cast_nullable_to_non_nullable
-              as BookUserProfile,
+              as BookUserProfile?,
+      ownerDetails: freezed == ownerDetails
+          ? _value.ownerDetails
+          : ownerDetails // ignore: cast_nullable_to_non_nullable
+              as BasicUser?,
     ));
   }
 }
@@ -183,7 +215,8 @@ class _$CommentBasicImpl implements _CommentBasic {
       required this.prodType,
       required this.prodId,
       required this.ownerId,
-      required this.relatedBook});
+      required this.relatedBook,
+      required this.ownerDetails});
 
   factory _$CommentBasicImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentBasicImplFromJson(json);
@@ -197,13 +230,15 @@ class _$CommentBasicImpl implements _CommentBasic {
   @override
   final String prodId;
   @override
-  final String ownerId;
+  final String? ownerId;
   @override
-  final BookUserProfile relatedBook;
+  final BookUserProfile? relatedBook;
+  @override
+  final BasicUser? ownerDetails;
 
   @override
   String toString() {
-    return 'CommentBasic(id: $id, text: $text, prodType: $prodType, prodId: $prodId, ownerId: $ownerId, relatedBook: $relatedBook)';
+    return 'CommentBasic(id: $id, text: $text, prodType: $prodType, prodId: $prodId, ownerId: $ownerId, relatedBook: $relatedBook, ownerDetails: $ownerDetails)';
   }
 
   @override
@@ -218,13 +253,15 @@ class _$CommentBasicImpl implements _CommentBasic {
             (identical(other.prodId, prodId) || other.prodId == prodId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
             (identical(other.relatedBook, relatedBook) ||
-                other.relatedBook == relatedBook));
+                other.relatedBook == relatedBook) &&
+            (identical(other.ownerDetails, ownerDetails) ||
+                other.ownerDetails == ownerDetails));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, text, prodType, prodId, ownerId, relatedBook);
+  int get hashCode => Object.hash(runtimeType, id, text, prodType, prodId,
+      ownerId, relatedBook, ownerDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -246,8 +283,9 @@ abstract class _CommentBasic implements CommentBasic {
       required final String text,
       required final String prodType,
       required final String prodId,
-      required final String ownerId,
-      required final BookUserProfile relatedBook}) = _$CommentBasicImpl;
+      required final String? ownerId,
+      required final BookUserProfile? relatedBook,
+      required final BasicUser? ownerDetails}) = _$CommentBasicImpl;
 
   factory _CommentBasic.fromJson(Map<String, dynamic> json) =
       _$CommentBasicImpl.fromJson;
@@ -261,9 +299,11 @@ abstract class _CommentBasic implements CommentBasic {
   @override
   String get prodId;
   @override
-  String get ownerId;
+  String? get ownerId;
   @override
-  BookUserProfile get relatedBook;
+  BookUserProfile? get relatedBook;
+  @override
+  BasicUser? get ownerDetails;
   @override
   @JsonKey(ignore: true)
   _$$CommentBasicImplCopyWith<_$CommentBasicImpl> get copyWith =>

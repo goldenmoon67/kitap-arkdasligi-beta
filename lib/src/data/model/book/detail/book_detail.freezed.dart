@@ -29,7 +29,7 @@ mixin _$BookDetail {
   int get pageCount => throw _privateConstructorUsedError;
   List<String?>? get categories => throw _privateConstructorUsedError;
   List<BasicUser?>? get readByUsers => throw _privateConstructorUsedError;
-  List<String?>? get commentDetails => throw _privateConstructorUsedError;
+  List<CommentBasic?>? get commentDetails => throw _privateConstructorUsedError;
   bool get isReadByUser => throw _privateConstructorUsedError;
   int get rates => throw _privateConstructorUsedError;
   String? get orginalName => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $BookDetailCopyWith<$Res> {
       int pageCount,
       List<String?>? categories,
       List<BasicUser?>? readByUsers,
-      List<String?>? commentDetails,
+      List<CommentBasic?>? commentDetails,
       bool isReadByUser,
       int rates,
       String? orginalName});
@@ -125,7 +125,7 @@ class _$BookDetailCopyWithImpl<$Res, $Val extends BookDetail>
       commentDetails: freezed == commentDetails
           ? _value.commentDetails
           : commentDetails // ignore: cast_nullable_to_non_nullable
-              as List<String?>?,
+              as List<CommentBasic?>?,
       isReadByUser: null == isReadByUser
           ? _value.isReadByUser
           : isReadByUser // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ abstract class _$$BookDetailImplCopyWith<$Res>
       int pageCount,
       List<String?>? categories,
       List<BasicUser?>? readByUsers,
-      List<String?>? commentDetails,
+      List<CommentBasic?>? commentDetails,
       bool isReadByUser,
       int rates,
       String? orginalName});
@@ -236,7 +236,7 @@ class __$$BookDetailImplCopyWithImpl<$Res>
       commentDetails: freezed == commentDetails
           ? _value._commentDetails
           : commentDetails // ignore: cast_nullable_to_non_nullable
-              as List<String?>?,
+              as List<CommentBasic?>?,
       isReadByUser: null == isReadByUser
           ? _value.isReadByUser
           : isReadByUser // ignore: cast_nullable_to_non_nullable
@@ -265,7 +265,7 @@ class _$BookDetailImpl implements _BookDetail {
       required this.pageCount,
       required final List<String?>? categories,
       required final List<BasicUser?>? readByUsers,
-      required final List<String?>? commentDetails,
+      required final List<CommentBasic?>? commentDetails,
       required this.isReadByUser,
       this.rates = 0,
       this.orginalName})
@@ -309,9 +309,9 @@ class _$BookDetailImpl implements _BookDetail {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String?>? _commentDetails;
+  final List<CommentBasic?>? _commentDetails;
   @override
-  List<String?>? get commentDetails {
+  List<CommentBasic?>? get commentDetails {
     final value = _commentDetails;
     if (value == null) return null;
     if (_commentDetails is EqualUnmodifiableListView) return _commentDetails;
@@ -400,7 +400,7 @@ abstract class _BookDetail implements BookDetail {
       required final int pageCount,
       required final List<String?>? categories,
       required final List<BasicUser?>? readByUsers,
-      required final List<String?>? commentDetails,
+      required final List<CommentBasic?>? commentDetails,
       required final bool isReadByUser,
       final int rates,
       final String? orginalName}) = _$BookDetailImpl;
@@ -426,7 +426,7 @@ abstract class _BookDetail implements BookDetail {
   @override
   List<BasicUser?>? get readByUsers;
   @override
-  List<String?>? get commentDetails;
+  List<CommentBasic?>? get commentDetails;
   @override
   bool get isReadByUser;
   @override

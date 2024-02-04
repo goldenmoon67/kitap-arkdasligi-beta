@@ -481,7 +481,7 @@ class ProfileCommentItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                           clipBehavior: Clip.hardEdge,
                           child: CachedNetworkImage(
-                            imageUrl: comment.relatedBook.imageUrl ??
+                            imageUrl: comment.relatedBook!.imageUrl ??
                                 "https://picsum.photos/50/50",
                             fit: BoxFit.fill,
                           ),
@@ -491,7 +491,7 @@ class ProfileCommentItem extends StatelessWidget {
                         width: 4,
                       ),
                       text(
-                        txt: comment.relatedBook.name,
+                        txt: comment.relatedBook!.name,
                         color: Colors.grey.shade700,
                       ),
                     ],

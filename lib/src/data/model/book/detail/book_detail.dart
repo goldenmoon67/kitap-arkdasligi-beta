@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitap_arkadasligi/src/data/model/author/author.dart';
+import 'package:kitap_arkadasligi/src/data/model/comments.dart/comments_basic.dart';
 import 'package:kitap_arkadasligi/src/data/model/profile/basic_user.dart';
 
 part 'book_detail.freezed.dart';
@@ -16,7 +17,7 @@ class BookDetail with _$BookDetail {
     required int pageCount,
     required List<String?>? categories,
     required List<BasicUser?>? readByUsers,
-    required List<String?>? commentDetails,
+    required List<CommentBasic?>? commentDetails,
     required bool isReadByUser,
     @Default(0) int rates,
     String? orginalName,
